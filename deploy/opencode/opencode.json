@@ -1,0 +1,18 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "permission": {
+    "edit": "deny",
+    "bash": "deny",
+    "webfetch": "deny",
+    "websearch": "deny",
+    "read": "deny"
+  },
+  "agent": {
+    "rag": {
+      "mode": "primary",
+      "description": "grounded-rag answer generator: no tools, answers from supplied sources only",
+      "prompt": "You are the answer generator for a retrieval-augmented question answering service. Follow the system instructions exactly.",
+      "tools": { "*": false }
+    }
+  }
+}

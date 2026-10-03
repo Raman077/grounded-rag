@@ -293,7 +293,7 @@ event: meta        data: {"request_id","trace_id","cache":{"hit":false}}
 event: retrieval   data: {"citations":[...]}            # before generation
 event: token       data: {"delta":"..."}                # 0..n
 event: guardrail   data: {"action":"redacted|removed_sentence","detail":"..."}  # optional
-event: final       data: { full JSON response above minus "answer" text duplication }
+event: final       data: { the full JSON response above; "answer" is authoritative (fallback or cleaned-up text) }
 event: error       data: {"code","message","retryable"} # terminal, replaces final
 ```
 The client may cancel by closing the connection. The server then stops the LLM call.
