@@ -1,7 +1,9 @@
+import gc
 import json
 from collections.abc import Callable
 from typing import Any
 
+import pytest
 from fastapi.testclient import TestClient
 from query_service.pipeline.orchestrator import FALLBACK_ANSWER
 from query_service.providers import LLMError
@@ -179,6 +181,17 @@ def test_llm_outage_in_stream_ends_with_error_event(client: TestClient, auth: di
     name, data = _sse(resp.text)[-1]
     assert name == "error"
     assert data == {"code": "llm_error", "message": "bad request", "retryable": False}
+
+
+def test_json_mode_closes_trace_context_cleanly(
+    client: TestClient, auth: dict[str, str], caplog: pytest.LogCaptureFixture
+) -> None:
+    # Regression: returning before the pipeline generator finished left its span open until garbage
+    # collection, which then failed with "Failed to detach context".
+    for _ in range(3):
+        client.post("/v1/query", json={"query": ANSWERABLE}, headers=auth)
+    gc.collect()
+    assert not [r for r in caplog.records if r.name.startswith("opentelemetry.context")]
 
 
 def test_health_endpoints(client: TestClient) -> None:

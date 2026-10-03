@@ -1,7 +1,8 @@
 from __future__ import annotations
 
 import json
-from collections.abc import AsyncIterator
+from collections.abc import AsyncGenerator, AsyncIterator
+from contextlib import aclosing
 from typing import Annotated, Any
 
 from fastapi import APIRouter, Depends, Request
@@ -57,37 +58,45 @@ async def query(
     if "text/event-stream" in request.headers.get("accept", ""):
         return StreamingResponse(_sse(events), media_type="text/event-stream", headers=_SSE_HEADERS)
 
-    async for event in events:
-        if isinstance(event, Final):
-            return event.response
-        if isinstance(event, Error):
-            status = 503 if event.retryable else 502
-            headers = {"Retry-After": "5"} if event.retryable else None
-            return problem_response(
-                request,
-                status,
-                "Generation failed",
-                event.message,
-                headers=headers,
-                extra={"code": event.code, "retryable": event.retryable},
-            )
+    # Drain the generator completely so its trace span closes inside this request's context.
+    outcome: Final | Error | None = None
+    async with aclosing(events):
+        async for event in events:
+            if isinstance(event, Final | Error):
+                outcome = event
+
+    if isinstance(outcome, Final):
+        return outcome.response
+    if isinstance(outcome, Error):
+        status = 503 if outcome.retryable else 502
+        headers = {"Retry-After": "5"} if outcome.retryable else None
+        return problem_response(
+            request,
+            status,
+            "Generation failed",
+            outcome.message,
+            headers=headers,
+            extra={"code": outcome.code, "retryable": outcome.retryable},
+        )
     raise RuntimeError("query pipeline ended without a final event")
 
 
-async def _sse(events: AsyncIterator[PipelineEvent]) -> AsyncIterator[str]:
-    async for event in events:
-        if isinstance(event, Meta):
-            yield _frame(
-                "meta", {"request_id": str(event.request_id), "trace_id": event.trace_id, "cache": {"hit": False}}
-            )
-        elif isinstance(event, Retrieval):
-            yield _frame("retrieval", {"citations": [c.model_dump(mode="json") for c in event.citations]})
-        elif isinstance(event, Token):
-            yield _frame("token", {"delta": event.delta})
-        elif isinstance(event, Final):
-            yield _frame("final", event.response.model_dump(mode="json"))
-        elif isinstance(event, Error):
-            yield _frame("error", {"code": event.code, "message": event.message, "retryable": event.retryable})
+async def _sse(events: AsyncGenerator[PipelineEvent]) -> AsyncIterator[str]:
+    # aclosing: when the client disconnects, close the pipeline (and its LLM call) right away.
+    async with aclosing(events):
+        async for event in events:
+            if isinstance(event, Meta):
+                yield _frame(
+                    "meta", {"request_id": str(event.request_id), "trace_id": event.trace_id, "cache": {"hit": False}}
+                )
+            elif isinstance(event, Retrieval):
+                yield _frame("retrieval", {"citations": [c.model_dump(mode="json") for c in event.citations]})
+            elif isinstance(event, Token):
+                yield _frame("token", {"delta": event.delta})
+            elif isinstance(event, Final):
+                yield _frame("final", event.response.model_dump(mode="json"))
+            elif isinstance(event, Error):
+                yield _frame("error", {"code": event.code, "message": event.message, "retryable": event.retryable})
 
 
 def _frame(name: str, data: dict[str, Any]) -> str:

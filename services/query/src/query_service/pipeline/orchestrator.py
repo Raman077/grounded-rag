@@ -8,7 +8,7 @@ from __future__ import annotations
 
 import re
 import uuid
-from collections.abc import AsyncIterator
+from collections.abc import AsyncGenerator
 from dataclasses import dataclass
 from typing import Literal
 
@@ -93,7 +93,7 @@ class QueryPipeline:
         self.llm = llm
         self.prompt = prompt
 
-    async def run(self, req: QueryRequest, principal: Principal) -> AsyncIterator[PipelineEvent]:
+    async def run(self, req: QueryRequest, principal: Principal) -> AsyncGenerator[PipelineEvent]:
         total = Stopwatch()
         request_id = uuid.uuid4()
         timings = Timings()
