@@ -10,14 +10,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: astral-sh/setup-uv@v3
-      - name: Set up Python
-        run: uv python install 3.12
-      - name: Install dev tools
-        run: uv sync --only-group dev
+      - uses: astral-sh/setup-uv@v6
+        with:
+          enable-cache: true
+      - name: Install
+        run: uv sync --all-packages --frozen --python 3.12
       - name: Lint
-        run: uv run ruff check .
+        run: uv run ruff check . && uv run ruff format --check .
       - name: Type-check
-        run: uv run mypy services libs
+        run: uv run mypy services/query/src services/ingest/src libs/core/src eval/harness
       - name: Test
-        run: uv run pytest || [ $? -eq 5 ]  # exit 5 = no tests collected yet
+        run: uv run pytest
