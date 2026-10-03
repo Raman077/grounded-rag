@@ -1,17 +1,20 @@
 [project]
 name = "ingest-service"
 version = "0.1.0"
-description = "Temporal ingestion workflows: connectors, parsing, chunking, enrichment, embedding"
+description = "Ingestion pipeline: parse, chunk, embed and index documents into Qdrant"
 requires-python = ">=3.12"
 dependencies = [
-  "rag-core",
-  "temporalio>=1.7",
-  "docling>=2",
+  "rag-core[fastembed]",
   "trafilatura>=1.12",
-  "qdrant-client>=1.11",
-  "sqlalchemy[asyncio]>=2.0",
-  "asyncpg>=0.29",
+  "pypdf>=5",
 ]
+
+[project.optional-dependencies]
+# Layout-aware PDF parsing (tables, OCR). Large install: pulls in torch.
+docling = ["docling>=2"]
+
+[project.scripts]
+rag-ingest = "ingest_service.cli:main"
 
 [tool.uv.sources]
 rag-core = { workspace = true }
