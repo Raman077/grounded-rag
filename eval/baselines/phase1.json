@@ -1,0 +1,1684 @@
+{
+  "generated_at": "2026-10-03T17:42:20.186192+00:00",
+  "golden": "eval\\golden\\golden_v0.jsonl",
+  "items": 25,
+  "metrics": {
+    "source_recall": 1.0,
+    "answer_rate": 1.0,
+    "correct_refusal_rate": 0.75,
+    "correctness": 0.967,
+    "faithfulness": 0.833,
+    "latency_p50_ms": 4314.2,
+    "latency_p95_ms": 23960.8,
+    "errors": 0
+  },
+  "rows": [
+    {
+      "id": "g001",
+      "type": "table",
+      "question": "How much does the Pro plan cost per month?",
+      "expected_answer": "$49 per month.",
+      "expected_sources": [
+        "pricing.md"
+      ],
+      "result": {
+        "request_id": "8f0841e1-9947-4449-a087-f1f449e40def",
+        "trace_id": "a11795f1d9d32d9d5621f5a12a83f03a",
+        "answer_type": "answer",
+        "answer": "The Pro plan costs **$49 per month** [S1].",
+        "citations": [
+          {
+            "id": "S1",
+            "doc_id": "dc62d89c20b5d9ae48103d547c2225b5",
+            "chunk_id": "7d1dad61-02f8-50c1-8ff1-f5b1f30646fb",
+            "title": "Nimbus Pricing",
+            "url": "pricing.md",
+            "page": null,
+            "section_path": "Nimbus Pricing > Plans",
+            "snippet": "| Plan       | Monthly price | Included storage | Included egress | Support          |\n|------------|---------------|------------------|-----------------|------------------|\n| Starter    | $0            | 5 GB             | 10 GB           | Community forum  |\n| Pro        | $49           | 500 GB \u2026",
+            "score": 0.7106,
+            "updated_at": "2026-10-03T17:25:16.917171Z"
+          }
+        ],
+        "related_sources": [],
+        "grounding": {
+          "score": null,
+          "unsupported_sentences": 0,
+          "checked": false
+        },
+        "usage": {
+          "input_tokens": 1625,
+          "output_tokens": 16,
+          "cached_input_tokens": 0
+        },
+        "timings_ms": {
+          "guard_in": null,
+          "query_understanding": null,
+          "retrieval": 58.4,
+          "rerank": null,
+          "ttft": 3932.8,
+          "total": 3991.5
+        },
+        "cache": {
+          "hit": false,
+          "type": null
+        },
+        "model": "openrouter/qwen/qwen3.8-27b:free",
+        "prompt_version": "answer-v1",
+        "index_version": "corpus_v1",
+        "degraded": false
+      },
+      "latency_ms": 4017.2,
+      "judge": {
+        "correctness": 1.0,
+        "faithfulness": 1.0,
+        "reason": "The answer states the correct $49 monthly Pro plan price and is directly supported by the cited pricing table snippet."
+      }
+    },
+    {
+      "id": "g002",
+      "type": "table",
+      "question": "How much storage is included in the Business plan?",
+      "expected_answer": "5 TB.",
+      "expected_sources": [
+        "pricing.md"
+      ],
+      "result": {
+        "request_id": "85dcdf97-66fd-45ef-a288-7869469b3115",
+        "trace_id": "4e677e93bbd83e3b2090427449a83650",
+        "answer_type": "answer",
+        "answer": "The Business plan includes 5 TB of storage [S2].",
+        "citations": [
+          {
+            "id": "S2",
+            "doc_id": "dc62d89c20b5d9ae48103d547c2225b5",
+            "chunk_id": "7d1dad61-02f8-50c1-8ff1-f5b1f30646fb",
+            "title": "Nimbus Pricing",
+            "url": "pricing.md",
+            "page": null,
+            "section_path": "Nimbus Pricing > Plans",
+            "snippet": "| Plan       | Monthly price | Included storage | Included egress | Support          |\n|------------|---------------|------------------|-----------------|------------------|\n| Starter    | $0            | 5 GB             | 10 GB           | Community forum  |\n| Pro        | $49           | 500 GB \u2026",
+            "score": 0.6759,
+            "updated_at": "2026-10-03T17:25:16.917171Z"
+          }
+        ],
+        "related_sources": [],
+        "grounding": {
+          "score": null,
+          "unsupported_sentences": 0,
+          "checked": false
+        },
+        "usage": {
+          "input_tokens": 1680,
+          "output_tokens": 14,
+          "cached_input_tokens": 0
+        },
+        "timings_ms": {
+          "guard_in": null,
+          "query_understanding": null,
+          "retrieval": 35.8,
+          "rerank": null,
+          "ttft": 4458.6,
+          "total": 4494.9
+        },
+        "cache": {
+          "hit": false,
+          "type": null
+        },
+        "model": "openrouter/qwen/qwen3.8-27b:free",
+        "prompt_version": "answer-v1",
+        "index_version": "corpus_v1",
+        "degraded": false
+      },
+      "latency_ms": 4508.9,
+      "judge": {
+        "correctness": 1.0,
+        "faithfulness": 0.0,
+        "reason": "The answer matches the reference, but the cited snippet is truncated and does not visibly show the Business plan\u2019s 5 TB storage claim."
+      }
+    },
+    {
+      "id": "g003",
+      "type": "factual",
+      "question": "What discount do I get for paying annually?",
+      "expected_answer": "15% on the Pro and Business plans.",
+      "expected_sources": [
+        "pricing.md"
+      ],
+      "result": {
+        "request_id": "e0514446-fece-4f9a-b2f2-a32fff938ab1",
+        "trace_id": "ebc17872db6f177388380b6a59db3124",
+        "answer_type": "answer",
+        "answer": "Annual billing gives a **15% discount** on the **Pro and Business** plans [S2].",
+        "citations": [
+          {
+            "id": "S2",
+            "doc_id": "dc62d89c20b5d9ae48103d547c2225b5",
+            "chunk_id": "7d1dad61-02f8-50c1-8ff1-f5b1f30646fb",
+            "title": "Nimbus Pricing",
+            "url": "pricing.md",
+            "page": null,
+            "section_path": "Nimbus Pricing > Plans",
+            "snippet": "| Plan       | Monthly price | Included storage | Included egress | Support          |\n|------------|---------------|------------------|-----------------|------------------|\n| Starter    | $0            | 5 GB             | 10 GB           | Community forum  |\n| Pro        | $49           | 500 GB \u2026",
+            "score": 0.6302,
+            "updated_at": "2026-10-03T17:25:16.917171Z"
+          }
+        ],
+        "related_sources": [],
+        "grounding": {
+          "score": null,
+          "unsupported_sentences": 0,
+          "checked": false
+        },
+        "usage": {
+          "input_tokens": 1400,
+          "output_tokens": 23,
+          "cached_input_tokens": 0
+        },
+        "timings_ms": {
+          "guard_in": null,
+          "query_understanding": null,
+          "retrieval": 37.0,
+          "rerank": null,
+          "ttft": 4271.9,
+          "total": 4309.2
+        },
+        "cache": {
+          "hit": false,
+          "type": null
+        },
+        "model": "openrouter/qwen/qwen3.8-27b:free",
+        "prompt_version": "answer-v1",
+        "index_version": "corpus_v1",
+        "degraded": false
+      },
+      "latency_ms": 4314.2,
+      "judge": {
+        "correctness": 1.0,
+        "faithfulness": 0.0,
+        "reason": "The answer matches the reference fact, but the shown snippet does not mention the annual discount or the Pro/Business plans."
+      }
+    },
+    {
+      "id": "g004",
+      "type": "factual",
+      "question": "What is the price of storage overage per GB?",
+      "expected_answer": "$0.018 per GB-month.",
+      "expected_sources": [
+        "pricing.md"
+      ],
+      "result": {
+        "request_id": "39cc5e83-b703-4dad-86fa-40b7f6295140",
+        "trace_id": "0385924d778c3ccf4cbe6aa953f9e459",
+        "answer_type": "answer",
+        "answer": "Storage overage costs **$0.018 per GB-month** [S1].",
+        "citations": [
+          {
+            "id": "S1",
+            "doc_id": "dc62d89c20b5d9ae48103d547c2225b5",
+            "chunk_id": "e526c90d-8c70-579d-986e-4b0979870558",
+            "title": "Nimbus Pricing",
+            "url": "pricing.md",
+            "page": null,
+            "section_path": "Nimbus Pricing > Overage charges",
+            "snippet": "Storage above the included amount costs $0.018 per GB-month. Egress above the included\namount costs $0.05 per GB. Overage is billed at the end of each calendar month.",
+            "score": 0.8461,
+            "updated_at": "2026-10-03T17:25:16.917171Z"
+          }
+        ],
+        "related_sources": [],
+        "grounding": {
+          "score": null,
+          "unsupported_sentences": 0,
+          "checked": false
+        },
+        "usage": {
+          "input_tokens": 1628,
+          "output_tokens": 20,
+          "cached_input_tokens": 0
+        },
+        "timings_ms": {
+          "guard_in": null,
+          "query_understanding": null,
+          "retrieval": 54.6,
+          "rerank": null,
+          "ttft": 7993.7,
+          "total": 8048.8
+        },
+        "cache": {
+          "hit": false,
+          "type": null
+        },
+        "model": "openrouter/qwen/qwen3.8-27b:free",
+        "prompt_version": "answer-v1",
+        "index_version": "corpus_v1",
+        "degraded": false
+      },
+      "latency_ms": 8056.1,
+      "judge": {
+        "correctness": 1.0,
+        "faithfulness": 1.0,
+        "reason": "The system answer states the exact reference price and is directly supported by the cited snippet."
+      }
+    },
+    {
+      "id": "g005",
+      "type": "factual",
+      "question": "Do I need a credit card to start the free trial?",
+      "expected_answer": "No. The 30-day Business trial needs no credit card.",
+      "expected_sources": [
+        "pricing.md"
+      ],
+      "result": {
+        "request_id": "06b563fa-6488-414e-bf93-1c876024bed2",
+        "trace_id": "7f91984f630cc11d67902fb641818281",
+        "answer_type": "answer",
+        "answer": "No, a credit card is not required to start the free trial [S1].",
+        "citations": [
+          {
+            "id": "S1",
+            "doc_id": "dc62d89c20b5d9ae48103d547c2225b5",
+            "chunk_id": "8c2a47e6-4d6b-528c-94d9-9112be60c9ea",
+            "title": "Nimbus Pricing",
+            "url": "pricing.md",
+            "page": null,
+            "section_path": "Nimbus Pricing > Free trial",
+            "snippet": "New accounts get a 30-day free trial of the Business plan. No credit card is required to\nstart the trial. At the end of the trial the account moves to the Starter plan unless a paid\nplan is chosen.",
+            "score": 0.8211,
+            "updated_at": "2026-10-03T17:25:16.917171Z"
+          }
+        ],
+        "related_sources": [],
+        "grounding": {
+          "score": null,
+          "unsupported_sentences": 0,
+          "checked": false
+        },
+        "usage": {
+          "input_tokens": 1427,
+          "output_tokens": 18,
+          "cached_input_tokens": 0
+        },
+        "timings_ms": {
+          "guard_in": null,
+          "query_understanding": null,
+          "retrieval": 63.9,
+          "rerank": null,
+          "ttft": 3900.8,
+          "total": 3965.3
+        },
+        "cache": {
+          "hit": false,
+          "type": null
+        },
+        "model": "openrouter/qwen/qwen3.8-27b:free",
+        "prompt_version": "answer-v1",
+        "index_version": "corpus_v1",
+        "degraded": false
+      },
+      "latency_ms": 3972.0,
+      "judge": {
+        "correctness": 1.0,
+        "faithfulness": 1.0,
+        "reason": "The answer correctly states no credit card is required and is fully supported by the cited snippet."
+      }
+    },
+    {
+      "id": "g006",
+      "type": "factual",
+      "question": "Can I get a refund on a monthly plan?",
+      "expected_answer": "No; monthly plans are not refundable but can be cancelled any time and stay active until the end of the billing period.",
+      "expected_sources": [
+        "pricing.md"
+      ],
+      "result": {
+        "request_id": "6a36b0ef-ce82-4c22-8c65-c1bc675d6166",
+        "trace_id": "115a063727f8f76ad8bc4918ce0bcef6",
+        "answer_type": "answer",
+        "answer": "No. Monthly plans are not refundable, but you can cancel at any time and the plan stays active until the end of the billing period [S1].",
+        "citations": [
+          {
+            "id": "S1",
+            "doc_id": "dc62d89c20b5d9ae48103d547c2225b5",
+            "chunk_id": "6495ec9e-03f5-5fcb-8786-a1339082c8b0",
+            "title": "Nimbus Pricing",
+            "url": "pricing.md",
+            "page": null,
+            "section_path": "Nimbus Pricing > Refunds",
+            "snippet": "Annual plans can be refunded pro rata within the first 60 days. Monthly plans are not\nrefundable, but they can be cancelled at any time and stay active until the end of the\nbilling period.",
+            "score": 0.7561,
+            "updated_at": "2026-10-03T17:25:16.917171Z"
+          }
+        ],
+        "related_sources": [],
+        "grounding": {
+          "score": null,
+          "unsupported_sentences": 0,
+          "checked": false
+        },
+        "usage": {
+          "input_tokens": 1713,
+          "output_tokens": 33,
+          "cached_input_tokens": 0
+        },
+        "timings_ms": {
+          "guard_in": null,
+          "query_understanding": null,
+          "retrieval": 45.1,
+          "rerank": null,
+          "ttft": 6007.5,
+          "total": 6053.0
+        },
+        "cache": {
+          "hit": false,
+          "type": null
+        },
+        "model": "openrouter/qwen/qwen3.8-27b:free",
+        "prompt_version": "answer-v1",
+        "index_version": "corpus_v1",
+        "degraded": false
+      },
+      "latency_ms": 6060.6,
+      "judge": {
+        "correctness": 1.0,
+        "faithfulness": 1.0,
+        "reason": "The answer matches the reference and every claim is directly supported by cited snippet S1."
+      }
+    },
+    {
+      "id": "g007",
+      "type": "factual",
+      "question": "What uptime does the Business plan guarantee?",
+      "expected_answer": "99.95% monthly uptime.",
+      "expected_sources": [
+        "sla.md"
+      ],
+      "result": {
+        "request_id": "759f0322-3ade-4d3e-b2a4-2f2b8786a3eb",
+        "trace_id": "9386ad417875b4919f37b59047d7c0da",
+        "answer_type": "answer",
+        "answer": "The Business plan guarantees 99.95% monthly uptime [S1].",
+        "citations": [
+          {
+            "id": "S1",
+            "doc_id": "03affaa2c3be5b9c1b14d661aa42a8f8",
+            "chunk_id": "2b1b37d3-8a8e-5b1b-8708-32126e0ba1e7",
+            "title": "Service Level Agreement",
+            "url": "sla.md",
+            "page": null,
+            "section_path": "Service Level Agreement > Availability commitment",
+            "snippet": "Nimbus commits to 99.9% monthly uptime for the Pro plan and 99.95% for the Business plan.\nEnterprise contracts include 99.99% monthly uptime. The Starter plan has no SLA.\n\nUptime is measured per region from Nimbus's external probes every 60 seconds.",
+            "score": 0.7665,
+            "updated_at": "2026-10-03T17:25:16.948593Z"
+          }
+        ],
+        "related_sources": [],
+        "grounding": {
+          "score": null,
+          "unsupported_sentences": 0,
+          "checked": false
+        },
+        "usage": {
+          "input_tokens": 1724,
+          "output_tokens": 18,
+          "cached_input_tokens": 0
+        },
+        "timings_ms": {
+          "guard_in": null,
+          "query_understanding": null,
+          "retrieval": 203.0,
+          "rerank": null,
+          "ttft": 7649.4,
+          "total": 7853.1
+        },
+        "cache": {
+          "hit": false,
+          "type": null
+        },
+        "model": "openrouter/qwen/qwen3.8-27b:free",
+        "prompt_version": "answer-v1",
+        "index_version": "corpus_v1",
+        "degraded": false
+      },
+      "latency_ms": 7860.8,
+      "judge": {
+        "correctness": 1.0,
+        "faithfulness": 1.0,
+        "reason": "The answer states the Business plan guarantees 99.95% monthly uptime, which is directly supported by snippet S1."
+      }
+    },
+    {
+      "id": "g008",
+      "type": "table",
+      "question": "What service credit do I get if monthly uptime falls below 95%?",
+      "expected_answer": "50% of the monthly fee.",
+      "expected_sources": [
+        "sla.md"
+      ],
+      "result": {
+        "request_id": "96a14a29-15d4-4122-96ca-f016acc8c65a",
+        "trace_id": "b9104898a97606c20ccdd4563c5945ff",
+        "answer_type": "answer",
+        "answer": "A credit of 50% of the monthly fee [S1].",
+        "citations": [
+          {
+            "id": "S1",
+            "doc_id": "03affaa2c3be5b9c1b14d661aa42a8f8",
+            "chunk_id": "f3daae2a-d42b-5bf8-80ca-3d03cc309189",
+            "title": "Service Level Agreement",
+            "url": "sla.md",
+            "page": null,
+            "section_path": "Service Level Agreement > Service credits",
+            "snippet": "| Monthly uptime          | Credit (% of monthly fee) |\n|-------------------------|---------------------------|\n| Below commitment, \u2265 99.0% | 10%                     |\n| 95.0% \u2013 99.0%           | 25%                       |\n| Below 95.0%             | 50%                       |\n\nCredits must be\u2026",
+            "score": 0.7986,
+            "updated_at": "2026-10-03T17:25:16.948593Z"
+          }
+        ],
+        "related_sources": [],
+        "grounding": {
+          "score": null,
+          "unsupported_sentences": 0,
+          "checked": false
+        },
+        "usage": {
+          "input_tokens": 1686,
+          "output_tokens": 16,
+          "cached_input_tokens": 0
+        },
+        "timings_ms": {
+          "guard_in": null,
+          "query_understanding": null,
+          "retrieval": 57.9,
+          "rerank": null,
+          "ttft": 23895.5,
+          "total": 23953.8
+        },
+        "cache": {
+          "hit": false,
+          "type": null
+        },
+        "model": "openrouter/qwen/qwen3.8-27b:free",
+        "prompt_version": "answer-v1",
+        "index_version": "corpus_v1",
+        "degraded": false
+      },
+      "latency_ms": 23960.8,
+      "judge": {
+        "correctness": 1.0,
+        "faithfulness": 1.0,
+        "reason": "The cited table explicitly states that below 95.0% uptime results in a 50% credit of the monthly fee."
+      }
+    },
+    {
+      "id": "g009",
+      "type": "factual",
+      "question": "How long do I have to request an SLA credit?",
+      "expected_answer": "Within 30 days of the end of the affected month, through the support portal.",
+      "expected_sources": [
+        "sla.md"
+      ],
+      "result": {
+        "request_id": "b7086f80-7e53-4401-8461-01d57b9899e7",
+        "trace_id": "cd5bdddd893cd8d62900c018f487f4a9",
+        "answer_type": "answer",
+        "answer": "Within 30 days of the end of the affected month [S1].",
+        "citations": [
+          {
+            "id": "S1",
+            "doc_id": "03affaa2c3be5b9c1b14d661aa42a8f8",
+            "chunk_id": "f3daae2a-d42b-5bf8-80ca-3d03cc309189",
+            "title": "Service Level Agreement",
+            "url": "sla.md",
+            "page": null,
+            "section_path": "Service Level Agreement > Service credits",
+            "snippet": "| Monthly uptime          | Credit (% of monthly fee) |\n|-------------------------|---------------------------|\n| Below commitment, \u2265 99.0% | 10%                     |\n| 95.0% \u2013 99.0%           | 25%                       |\n| Below 95.0%             | 50%                       |\n\nCredits must be\u2026",
+            "score": 0.6725,
+            "updated_at": "2026-10-03T17:25:16.948593Z"
+          }
+        ],
+        "related_sources": [],
+        "grounding": {
+          "score": null,
+          "unsupported_sentences": 0,
+          "checked": false
+        },
+        "usage": {
+          "input_tokens": 1642,
+          "output_tokens": 17,
+          "cached_input_tokens": 0
+        },
+        "timings_ms": {
+          "guard_in": null,
+          "query_understanding": null,
+          "retrieval": 59.6,
+          "rerank": null,
+          "ttft": 4451.6,
+          "total": 4511.8
+        },
+        "cache": {
+          "hit": false,
+          "type": null
+        },
+        "model": "openrouter/qwen/qwen3.8-27b:free",
+        "prompt_version": "answer-v1",
+        "index_version": "corpus_v1",
+        "degraded": false
+      },
+      "latency_ms": 4517.4,
+      "judge": {
+        "correctness": 0.5,
+        "faithfulness": 0.0,
+        "reason": "The answer includes the correct 30-day window but omits the support-portal requirement, and the cited snippet does not show the stated time frame."
+      }
+    },
+    {
+      "id": "g010",
+      "type": "factual",
+      "question": "Does scheduled maintenance count as downtime?",
+      "expected_answer": "No, if announced at least 72 hours in advance; windows are at most 4 hours per month between 02:00 and 06:00 UTC.",
+      "expected_sources": [
+        "sla.md"
+      ],
+      "result": {
+        "request_id": "86f2cd6a-7c4c-4935-bbb4-9a1a4744970b",
+        "trace_id": "eea0dac8698e820a79222d2faa482bd6",
+        "answer_type": "answer",
+        "answer": "No\u2014scheduled maintenance announced at least 72 hours in advance does not count as downtime [S1]. The sources do not specify how unannounced maintenance is treated.",
+        "citations": [
+          {
+            "id": "S1",
+            "doc_id": "03affaa2c3be5b9c1b14d661aa42a8f8",
+            "chunk_id": "6a162679-5ad3-5373-b895-d5a46ab89521",
+            "title": "Service Level Agreement",
+            "url": "sla.md",
+            "page": null,
+            "section_path": "Service Level Agreement > Exclusions",
+            "snippet": "Scheduled maintenance announced at least 72 hours in advance does not count as downtime.\nMaintenance windows are limited to 4 hours per month and run between 02:00 and 06:00 UTC.",
+            "score": 0.8441,
+            "updated_at": "2026-10-03T17:25:16.948593Z"
+          }
+        ],
+        "related_sources": [],
+        "grounding": {
+          "score": null,
+          "unsupported_sentences": 0,
+          "checked": false
+        },
+        "usage": {
+          "input_tokens": 1628,
+          "output_tokens": 36,
+          "cached_input_tokens": 0
+        },
+        "timings_ms": {
+          "guard_in": null,
+          "query_understanding": null,
+          "retrieval": 64.5,
+          "rerank": null,
+          "ttft": 10427.9,
+          "total": 10492.9
+        },
+        "cache": {
+          "hit": false,
+          "type": null
+        },
+        "model": "openrouter/qwen/qwen3.8-27b:free",
+        "prompt_version": "answer-v1",
+        "index_version": "corpus_v1",
+        "degraded": false
+      },
+      "latency_ms": 10502.0,
+      "judge": {
+        "correctness": 0.8,
+        "faithfulness": 1.0,
+        "reason": "The answer gives the correct 72-hour announcement rule but omits the 4-hour monthly maintenance window between 02:00 and 06:00 UTC."
+      }
+    },
+    {
+      "id": "g011",
+      "type": "factual",
+      "question": "What encryption is used for data at rest?",
+      "expected_answer": "AES-256.",
+      "expected_sources": [
+        "security.md"
+      ],
+      "result": {
+        "request_id": "2603e1d3-76ff-4195-8547-79f475ab5065",
+        "trace_id": "2afddefa6618c55ef9aa35829b9a7a1c",
+        "answer_type": "answer",
+        "answer": "Data at rest is encrypted with **AES-256** [S1].",
+        "citations": [
+          {
+            "id": "S1",
+            "doc_id": "0ac12dd68bca75851974acffe848f6c4",
+            "chunk_id": "b1f0276d-1b42-566c-88bd-0b49e1566c25",
+            "title": "Security and Compliance",
+            "url": "security.md",
+            "page": null,
+            "section_path": "Security and Compliance > Encryption",
+            "snippet": "All data is encrypted at rest with AES-256. Data in transit is protected with TLS 1.3; TLS\n1.2 is accepted for older clients until 31 December 2026. Customers on the Business and\nEnterprise plans can bring their own keys (BYOK) through AWS KMS or Azure Key Vault.",
+            "score": 0.7788,
+            "updated_at": "2026-10-03T17:25:17.003216Z"
+          }
+        ],
+        "related_sources": [],
+        "grounding": {
+          "score": null,
+          "unsupported_sentences": 0,
+          "checked": false
+        },
+        "usage": {
+          "input_tokens": 1230,
+          "output_tokens": 18,
+          "cached_input_tokens": 0
+        },
+        "timings_ms": {
+          "guard_in": null,
+          "query_understanding": null,
+          "retrieval": 28.7,
+          "rerank": null,
+          "ttft": 3269.6,
+          "total": 3298.6
+        },
+        "cache": {
+          "hit": false,
+          "type": null
+        },
+        "model": "openrouter/qwen/qwen3.8-27b:free",
+        "prompt_version": "answer-v1",
+        "index_version": "corpus_v1",
+        "degraded": false
+      },
+      "latency_ms": 3303.8,
+      "judge": {
+        "correctness": 1.0,
+        "faithfulness": 1.0,
+        "reason": "The answer correctly identifies AES-256 and the cited snippet explicitly states that all data is encrypted at rest with AES-256."
+      }
+    },
+    {
+      "id": "g012",
+      "type": "factual",
+      "question": "Is Nimbus HIPAA certified?",
+      "expected_answer": "No, but Enterprise customers can sign a BAA.",
+      "expected_sources": [
+        "security.md"
+      ],
+      "result": {
+        "request_id": "78e71be7-8c56-418a-b906-700dd89e3bc6",
+        "trace_id": "f807fa8edbdf2f7d1bb5b085bbb78399",
+        "answer_type": "answer",
+        "answer": "No, Nimbus is not HIPAA certified [S1]. However, Enterprise customers can sign a Business Associate Agreement (BAA) [S1].",
+        "citations": [
+          {
+            "id": "S1",
+            "doc_id": "0ac12dd68bca75851974acffe848f6c4",
+            "chunk_id": "c603dc80-1c8b-50c9-910d-595b62e3f7d3",
+            "title": "Security and Compliance",
+            "url": "security.md",
+            "page": null,
+            "section_path": "Security and Compliance > Certifications",
+            "snippet": "Nimbus holds SOC 2 Type II and ISO 27001 certifications. The SOC 2 report is renewed every\ntwelve months and can be requested under NDA from the trust portal. Nimbus is not HIPAA\ncertified, but Enterprise customers can sign a Business Associate Agreement (BAA).",
+            "score": 0.8505,
+            "updated_at": "2026-10-03T17:25:17.003216Z"
+          }
+        ],
+        "related_sources": [],
+        "grounding": {
+          "score": null,
+          "unsupported_sentences": 0,
+          "checked": false
+        },
+        "usage": {
+          "input_tokens": 1582,
+          "output_tokens": 31,
+          "cached_input_tokens": 0
+        },
+        "timings_ms": {
+          "guard_in": null,
+          "query_understanding": null,
+          "retrieval": 54.0,
+          "rerank": null,
+          "ttft": 4383.8,
+          "total": 4438.2
+        },
+        "cache": {
+          "hit": false,
+          "type": null
+        },
+        "model": "openrouter/qwen/qwen3.8-27b:free",
+        "prompt_version": "answer-v1",
+        "index_version": "corpus_v1",
+        "degraded": false
+      },
+      "latency_ms": 4441.5,
+      "judge": {
+        "correctness": 1.0,
+        "faithfulness": 1.0,
+        "reason": "The answer correctly states that Nimbus is not HIPAA certified but Enterprise customers can sign a BAA, and this is fully supported by the cited source."
+      }
+    },
+    {
+      "id": "g013",
+      "type": "factual",
+      "question": "Which regions can I store data in?",
+      "expected_answer": "us-east, us-west, eu-central and ap-southeast.",
+      "expected_sources": [
+        "security.md"
+      ],
+      "result": {
+        "request_id": "d1a3b91c-894b-4900-bb2d-ee3902aa6d0d",
+        "trace_id": "d9244c08875843cb3e231bf2e042e048",
+        "answer_type": "answer",
+        "answer": "You can store data in:\n\n- us-east\n- us-west\n- eu-central\n- ap-southeast [S1]",
+        "citations": [
+          {
+            "id": "S1",
+            "doc_id": "0ac12dd68bca75851974acffe848f6c4",
+            "chunk_id": "24fa79cb-4b6e-5efa-a0f3-47c2b110cd9d",
+            "title": "Security and Compliance",
+            "url": "security.md",
+            "page": null,
+            "section_path": "Security and Compliance > Data residency",
+            "snippet": "Customers choose a home region when creating a project. Available regions are us-east,\nus-west, eu-central and ap-southeast. Data never leaves the home region unless cross-region\nreplication is turned on explicitly.",
+            "score": 0.7688,
+            "updated_at": "2026-10-03T17:25:17.003216Z"
+          }
+        ],
+        "related_sources": [],
+        "grounding": {
+          "score": null,
+          "unsupported_sentences": 0,
+          "checked": false
+        },
+        "usage": {
+          "input_tokens": 1654,
+          "output_tokens": 29,
+          "cached_input_tokens": 0
+        },
+        "timings_ms": {
+          "guard_in": null,
+          "query_understanding": null,
+          "retrieval": 35.6,
+          "rerank": null,
+          "ttft": 3476.9,
+          "total": 3512.9
+        },
+        "cache": {
+          "hit": false,
+          "type": null
+        },
+        "model": "openrouter/qwen/qwen3.8-27b:free",
+        "prompt_version": "answer-v1",
+        "index_version": "corpus_v1",
+        "degraded": false
+      },
+      "latency_ms": 3517.1,
+      "judge": {
+        "correctness": 1.0,
+        "faithfulness": 1.0,
+        "reason": "The answer lists exactly the four regions stated in the cited source."
+      }
+    },
+    {
+      "id": "g014",
+      "type": "factual",
+      "question": "How long are audit logs kept on the Enterprise plan?",
+      "expected_answer": "400 days.",
+      "expected_sources": [
+        "security.md"
+      ],
+      "result": {
+        "request_id": "69487719-b7b6-48f7-ae7b-0173eafc2cad",
+        "trace_id": "3ec01f715dc42b41fb36745887d6a13b",
+        "answer_type": "answer",
+        "answer": "Audit logs are kept for **400 days** on the Enterprise plan [S1].",
+        "citations": [
+          {
+            "id": "S1",
+            "doc_id": "0ac12dd68bca75851974acffe848f6c4",
+            "chunk_id": "419cc90f-c51b-5b9a-bef9-e1fe0eef943b",
+            "title": "Security and Compliance",
+            "url": "security.md",
+            "page": null,
+            "section_path": "Security and Compliance > Access control",
+            "snippet": "Single sign-on with SAML 2.0 and OIDC is available on the Business and Enterprise plans.\nMulti-factor authentication is mandatory for all accounts with administrator rights.\nAudit logs are kept for 400 days on Enterprise and 90 days on other paid plans.",
+            "score": 0.7509,
+            "updated_at": "2026-10-03T17:25:17.003216Z"
+          }
+        ],
+        "related_sources": [],
+        "grounding": {
+          "score": null,
+          "unsupported_sentences": 0,
+          "checked": false
+        },
+        "usage": {
+          "input_tokens": 1571,
+          "output_tokens": 20,
+          "cached_input_tokens": 0
+        },
+        "timings_ms": {
+          "guard_in": null,
+          "query_understanding": null,
+          "retrieval": 64.7,
+          "rerank": null,
+          "ttft": 3549.3,
+          "total": 3614.5
+        },
+        "cache": {
+          "hit": false,
+          "type": null
+        },
+        "model": "openrouter/qwen/qwen3.8-27b:free",
+        "prompt_version": "answer-v1",
+        "index_version": "corpus_v1",
+        "degraded": false
+      },
+      "latency_ms": 3620.0,
+      "judge": {
+        "correctness": 1.0,
+        "faithfulness": 1.0,
+        "reason": "The answer correctly states 400 days and is directly supported by the cited snippet."
+      }
+    },
+    {
+      "id": "g015",
+      "type": "factual",
+      "question": "What is the API rate limit on the Pro plan?",
+      "expected_answer": "100 requests per second, burst up to 200.",
+      "expected_sources": [
+        "api-limits.md"
+      ],
+      "result": {
+        "request_id": "88f2a32f-b6a3-4b84-ae40-e5d80887c823",
+        "trace_id": "0f92c27d7dd19238618728f048047c0c",
+        "answer_type": "answer",
+        "answer": "The Pro plan\u2019s API rate limit is **100 requests per second**, with a burst capacity of up to **200 requests** [S1]. These limits apply **per project**, not per API key [S2].",
+        "citations": [
+          {
+            "id": "S1",
+            "doc_id": "8846604e81f48ba825a49b74666d8cb0",
+            "chunk_id": "bddb90cb-598d-59e2-a204-b34d9534ede5",
+            "title": "API Rate Limits",
+            "url": "api-limits.md",
+            "page": null,
+            "section_path": "API Rate Limits > Request limits by plan",
+            "snippet": "- Starter: 10 requests per second, burst up to 20.\n- Pro: 100 requests per second, burst up to 200.\n- Business: 1,000 requests per second, burst up to 2,000.\n- Enterprise: negotiated per contract.",
+            "score": 0.8305,
+            "updated_at": "2026-10-03T17:25:17.039796Z"
+          },
+          {
+            "id": "S2",
+            "doc_id": "8846604e81f48ba825a49b74666d8cb0",
+            "chunk_id": "0280065f-07d1-585f-b5a4-3fcbfab4baa7",
+            "title": "API Rate Limits",
+            "url": "api-limits.md",
+            "page": null,
+            "section_path": "API Rate Limits",
+            "snippet": "The Nimbus REST API limits how many requests a project can make. Limits apply per project,\nnot per API key.",
+            "score": 0.746,
+            "updated_at": "2026-10-03T17:25:17.039796Z"
+          }
+        ],
+        "related_sources": [],
+        "grounding": {
+          "score": null,
+          "unsupported_sentences": 0,
+          "checked": false
+        },
+        "usage": {
+          "input_tokens": 1723,
+          "output_tokens": 49,
+          "cached_input_tokens": 0
+        },
+        "timings_ms": {
+          "guard_in": null,
+          "query_understanding": null,
+          "retrieval": 77.1,
+          "rerank": null,
+          "ttft": 3631.7,
+          "total": 3709.4
+        },
+        "cache": {
+          "hit": false,
+          "type": null
+        },
+        "model": "openrouter/qwen/qwen3.8-27b:free",
+        "prompt_version": "answer-v1",
+        "index_version": "corpus_v1",
+        "degraded": false
+      },
+      "latency_ms": 3714.2,
+      "judge": {
+        "correctness": 1.0,
+        "faithfulness": 1.0,
+        "reason": "The answer states the same 100 requests per second and burst up to 200 as the reference, and all added claims are directly supported by the cited snippets."
+      }
+    },
+    {
+      "id": "g016",
+      "type": "factual",
+      "question": "What happens when I exceed the API rate limit?",
+      "expected_answer": "HTTP 429 with a Retry-After header; back off exponentially from that value.",
+      "expected_sources": [
+        "api-limits.md"
+      ],
+      "result": {
+        "request_id": "fbe581d8-e3e3-4ba8-bbfa-7c77125fe430",
+        "trace_id": "d6a64539b8d6edcda25972476cfbfe80",
+        "answer_type": "answer",
+        "answer": "The API responds with **HTTP 429 Too Many Requests** and a `Retry-After` header giving the number of seconds to wait. Clients should back off exponentially starting from that value [S1].\n\nExample response [S1]:\n\n```http\nHTTP/1.1 429 Too Many Requests\nRetry-After: 2\nX-RateLimit-Limit: 100\nX-RateLimit-Remaining: 0\n```\n\nLimits apply per project, not per API key [S3].",
+        "citations": [
+          {
+            "id": "S1",
+            "doc_id": "8846604e81f48ba825a49b74666d8cb0",
+            "chunk_id": "e5b82e9f-f579-50dc-ae0f-cb7025ac76b1",
+            "title": "API Rate Limits",
+            "url": "api-limits.md",
+            "page": null,
+            "section_path": "API Rate Limits > When a limit is exceeded",
+            "snippet": "The API responds with HTTP 429 Too Many Requests and a `Retry-After` header giving the\nnumber of seconds to wait. Clients should back off exponentially starting from that value.\n\n```http\nHTTP/1.1 429 Too Many Requests\nRetry-After: 2\nX-RateLimit-Limit: 100\nX-RateLimit-Remaining: 0\n```",
+            "score": 0.8331,
+            "updated_at": "2026-10-03T17:25:17.039796Z"
+          },
+          {
+            "id": "S3",
+            "doc_id": "8846604e81f48ba825a49b74666d8cb0",
+            "chunk_id": "0280065f-07d1-585f-b5a4-3fcbfab4baa7",
+            "title": "API Rate Limits",
+            "url": "api-limits.md",
+            "page": null,
+            "section_path": "API Rate Limits",
+            "snippet": "The Nimbus REST API limits how many requests a project can make. Limits apply per project,\nnot per API key.",
+            "score": 0.7709,
+            "updated_at": "2026-10-03T17:25:17.039796Z"
+          }
+        ],
+        "related_sources": [],
+        "grounding": {
+          "score": null,
+          "unsupported_sentences": 0,
+          "checked": false
+        },
+        "usage": {
+          "input_tokens": 1616,
+          "output_tokens": 112,
+          "cached_input_tokens": 0
+        },
+        "timings_ms": {
+          "guard_in": null,
+          "query_understanding": null,
+          "retrieval": 36.5,
+          "rerank": null,
+          "ttft": 21025.7,
+          "total": 21062.7
+        },
+        "cache": {
+          "hit": false,
+          "type": null
+        },
+        "model": "openrouter/qwen/qwen3.8-27b:free",
+        "prompt_version": "answer-v1",
+        "index_version": "corpus_v1",
+        "degraded": false
+      },
+      "latency_ms": 21067.5,
+      "judge": {
+        "correctness": 1.0,
+        "faithfulness": 1.0,
+        "reason": "The answer states the same core facts as the reference and every additional claim is supported by the cited snippets."
+      }
+    },
+    {
+      "id": "g017",
+      "type": "factual",
+      "question": "What is the largest object I can upload with multipart upload?",
+      "expected_answer": "5 TB.",
+      "expected_sources": [
+        "api-limits.md"
+      ],
+      "result": {
+        "request_id": "096ed0e0-c7b3-4415-8965-da658023a7d2",
+        "trace_id": "9747d4db1440efa33c72b3ab44707bc7",
+        "answer_type": "answer",
+        "answer": "The largest object you can upload with multipart upload is **5 TB** [S1][S2].",
+        "citations": [
+          {
+            "id": "S1",
+            "doc_id": "8846604e81f48ba825a49b74666d8cb0",
+            "chunk_id": "76490b61-88af-542d-aed7-b6812aceb556",
+            "title": "API Rate Limits",
+            "url": "api-limits.md",
+            "page": null,
+            "section_path": "API Rate Limits > Upload size",
+            "snippet": "A single upload request can carry at most 5 GB. Larger objects must use multipart upload,\nwhich supports objects up to 5 TB in parts of 5 MB to 5 GB.",
+            "score": 0.8252,
+            "updated_at": "2026-10-03T17:25:17.039796Z"
+          },
+          {
+            "id": "S2",
+            "doc_id": "730933af8b73b36f155b49c56d059ade",
+            "chunk_id": "10d52742-9fa0-5bee-bb61-254347bb41c0",
+            "title": "Nimbus Release Notes",
+            "url": "release-notes.html",
+            "page": null,
+            "section_path": "Nimbus Release Notes > Version 4.1 (June 2026)",
+            "snippet": "Version 4.1 introduced the ap-southeast region, located in Singapore, and raised the maximum object size for multipart uploads from 1 TB to 5 TB.",
+            "score": 0.6959,
+            "updated_at": "2026-10-03T17:25:17.096811Z"
+          }
+        ],
+        "related_sources": [],
+        "grounding": {
+          "score": null,
+          "unsupported_sentences": 0,
+          "checked": false
+        },
+        "usage": {
+          "input_tokens": 1541,
+          "output_tokens": 22,
+          "cached_input_tokens": 0
+        },
+        "timings_ms": {
+          "guard_in": null,
+          "query_understanding": null,
+          "retrieval": 45.0,
+          "rerank": null,
+          "ttft": 3473.2,
+          "total": 3518.6
+        },
+        "cache": {
+          "hit": false,
+          "type": null
+        },
+        "model": "openrouter/qwen/qwen3.8-27b:free",
+        "prompt_version": "answer-v1",
+        "index_version": "corpus_v1",
+        "degraded": false
+      },
+      "latency_ms": 3522.4,
+      "judge": {
+        "correctness": 1.0,
+        "faithfulness": 1.0,
+        "reason": "The answer states 5 TB, matching the reference and directly supported by the cited snippets."
+      }
+    },
+    {
+      "id": "g018",
+      "type": "factual",
+      "question": "How much does archive storage cost?",
+      "expected_answer": "$0.004 per GB-month.",
+      "expected_sources": [
+        "release-notes.html"
+      ],
+      "result": {
+        "request_id": "793ed0de-74db-473f-b452-2d1ef48e8924",
+        "trace_id": "d51f158131360d4670a2f74106e2bdcb",
+        "answer_type": "answer",
+        "answer": "Archive storage costs **$0.004 per GB-month** [S1].",
+        "citations": [
+          {
+            "id": "S1",
+            "doc_id": "730933af8b73b36f155b49c56d059ade",
+            "chunk_id": "4ff17115-4df4-58e1-8d58-01d05db67a5a",
+            "title": "Nimbus Release Notes",
+            "url": "release-notes.html",
+            "page": null,
+            "section_path": "Nimbus Release Notes > Version 4.2 (September 2026)",
+            "snippet": "Version 4.2 adds lifecycle rules that move objects to the archive tier automatically after a chosen number of days. Archive storage costs $0.004 per GB-month and objects can be restored within 12 hours.\n\nThe command-line tool now supports resumable uploads with the `--resume` flag.",
+            "score": 0.7915,
+            "updated_at": "2026-10-03T17:25:17.096811Z"
+          }
+        ],
+        "related_sources": [],
+        "grounding": {
+          "score": null,
+          "unsupported_sentences": 0,
+          "checked": false
+        },
+        "usage": {
+          "input_tokens": 1423,
+          "output_tokens": 19,
+          "cached_input_tokens": 0
+        },
+        "timings_ms": {
+          "guard_in": null,
+          "query_understanding": null,
+          "retrieval": 33.4,
+          "rerank": null,
+          "ttft": 3438.5,
+          "total": 3472.3
+        },
+        "cache": {
+          "hit": false,
+          "type": null
+        },
+        "model": "openrouter/qwen/qwen3.8-27b:free",
+        "prompt_version": "answer-v1",
+        "index_version": "corpus_v1",
+        "degraded": false
+      },
+      "latency_ms": 3478.1,
+      "judge": {
+        "correctness": 1.0,
+        "faithfulness": 1.0,
+        "reason": "The system answer exactly matches the reference answer and is fully supported by snippet S1."
+      }
+    },
+    {
+      "id": "g019",
+      "type": "factual",
+      "question": "When will the v1 API be shut down?",
+      "expected_answer": "1 March 2027.",
+      "expected_sources": [
+        "release-notes.html"
+      ],
+      "result": {
+        "request_id": "20db3b63-a9a5-4e25-9dfe-87e1362abc04",
+        "trace_id": "22e84ed85700e409ecb2945286ce77d7",
+        "answer_type": "answer",
+        "answer": "The v1 API will be shut down on 1 March 2027 [S1].",
+        "citations": [
+          {
+            "id": "S1",
+            "doc_id": "730933af8b73b36f155b49c56d059ade",
+            "chunk_id": "abdfc5e9-42a2-5cd5-bcd8-839d1916894c",
+            "title": "Nimbus Release Notes",
+            "url": "release-notes.html",
+            "page": null,
+            "section_path": "Nimbus Release Notes > Deprecations",
+            "snippet": "The v1 API will be shut down on 1 March 2027. Customers should migrate to the v2 API, which has been generally available since version 3.0.",
+            "score": 0.8607,
+            "updated_at": "2026-10-03T17:25:17.096811Z"
+          }
+        ],
+        "related_sources": [],
+        "grounding": {
+          "score": null,
+          "unsupported_sentences": 0,
+          "checked": false
+        },
+        "usage": {
+          "input_tokens": 1590,
+          "output_tokens": 22,
+          "cached_input_tokens": 0
+        },
+        "timings_ms": {
+          "guard_in": null,
+          "query_understanding": null,
+          "retrieval": 61.2,
+          "rerank": null,
+          "ttft": 2370.5,
+          "total": 2432.1
+        },
+        "cache": {
+          "hit": false,
+          "type": null
+        },
+        "model": "openrouter/qwen/qwen3.8-27b:free",
+        "prompt_version": "answer-v1",
+        "index_version": "corpus_v1",
+        "degraded": false
+      },
+      "latency_ms": 2441.1,
+      "judge": {
+        "correctness": 1.0,
+        "faithfulness": 1.0,
+        "reason": "The answer states the shutdown date as 1 March 2027, which is fully supported by the cited source."
+      }
+    },
+    {
+      "id": "g020",
+      "type": "multi_hop",
+      "question": "Which plans offer both SSO and bring-your-own-key encryption?",
+      "expected_answer": "Business and Enterprise.",
+      "expected_sources": [
+        "security.md"
+      ],
+      "result": {
+        "request_id": "896fe98a-e67b-4f44-a213-d536f929df8c",
+        "trace_id": "7fa163ec5980fa9bfea677365e5cf4a2",
+        "answer_type": "answer",
+        "answer": "Business and Enterprise plans offer both SSO and bring-your-own-key encryption [S1][S2].",
+        "citations": [
+          {
+            "id": "S1",
+            "doc_id": "0ac12dd68bca75851974acffe848f6c4",
+            "chunk_id": "b1f0276d-1b42-566c-88bd-0b49e1566c25",
+            "title": "Security and Compliance",
+            "url": "security.md",
+            "page": null,
+            "section_path": "Security and Compliance > Encryption",
+            "snippet": "All data is encrypted at rest with AES-256. Data in transit is protected with TLS 1.3; TLS\n1.2 is accepted for older clients until 31 December 2026. Customers on the Business and\nEnterprise plans can bring their own keys (BYOK) through AWS KMS or Azure Key Vault.",
+            "score": 0.698,
+            "updated_at": "2026-10-03T17:25:17.003216Z"
+          },
+          {
+            "id": "S2",
+            "doc_id": "0ac12dd68bca75851974acffe848f6c4",
+            "chunk_id": "419cc90f-c51b-5b9a-bef9-e1fe0eef943b",
+            "title": "Security and Compliance",
+            "url": "security.md",
+            "page": null,
+            "section_path": "Security and Compliance > Access control",
+            "snippet": "Single sign-on with SAML 2.0 and OIDC is available on the Business and Enterprise plans.\nMulti-factor authentication is mandatory for all accounts with administrator rights.\nAudit logs are kept for 400 days on Enterprise and 90 days on other paid plans.",
+            "score": 0.6096,
+            "updated_at": "2026-10-03T17:25:17.003216Z"
+          }
+        ],
+        "related_sources": [],
+        "grounding": {
+          "score": null,
+          "unsupported_sentences": 0,
+          "checked": false
+        },
+        "usage": {
+          "input_tokens": 1117,
+          "output_tokens": 23,
+          "cached_input_tokens": 0
+        },
+        "timings_ms": {
+          "guard_in": null,
+          "query_understanding": null,
+          "retrieval": 47.4,
+          "rerank": null,
+          "ttft": 19100.4,
+          "total": 19148.2
+        },
+        "cache": {
+          "hit": false,
+          "type": null
+        },
+        "model": "openrouter/qwen/qwen3.8-27b:free",
+        "prompt_version": "answer-v1",
+        "index_version": "corpus_v1",
+        "degraded": false
+      },
+      "latency_ms": 19151.8,
+      "judge": {
+        "correctness": 1.0,
+        "faithfulness": 1.0,
+        "reason": "The answer correctly identifies Business and Enterprise, and both SSO and BYOK availability for those plans are directly supported by the cited snippets."
+      }
+    },
+    {
+      "id": "g021",
+      "type": "multi_hop",
+      "question": "If I am on the Pro plan, what uptime is guaranteed and how fast will support reply by email?",
+      "expected_answer": "99.9% monthly uptime; email support within 1 business day.",
+      "expected_sources": [
+        "sla.md",
+        "pricing.md"
+      ],
+      "result": {
+        "request_id": "4b3c85f4-3df2-4d8b-9322-fc11429113d2",
+        "trace_id": "3a89fc4d69aad8fc84040645d28b65af",
+        "answer_type": "answer",
+        "answer": "On the Pro plan, Nimbus guarantees **99.9% monthly uptime** [S1], and email support replies within **1 business day** [S4].",
+        "citations": [
+          {
+            "id": "S1",
+            "doc_id": "03affaa2c3be5b9c1b14d661aa42a8f8",
+            "chunk_id": "2b1b37d3-8a8e-5b1b-8708-32126e0ba1e7",
+            "title": "Service Level Agreement",
+            "url": "sla.md",
+            "page": null,
+            "section_path": "Service Level Agreement > Availability commitment",
+            "snippet": "Nimbus commits to 99.9% monthly uptime for the Pro plan and 99.95% for the Business plan.\nEnterprise contracts include 99.99% monthly uptime. The Starter plan has no SLA.\n\nUptime is measured per region from Nimbus's external probes every 60 seconds.",
+            "score": 0.7426,
+            "updated_at": "2026-10-03T17:25:16.948593Z"
+          },
+          {
+            "id": "S4",
+            "doc_id": "dc62d89c20b5d9ae48103d547c2225b5",
+            "chunk_id": "7d1dad61-02f8-50c1-8ff1-f5b1f30646fb",
+            "title": "Nimbus Pricing",
+            "url": "pricing.md",
+            "page": null,
+            "section_path": "Nimbus Pricing > Plans",
+            "snippet": "| Plan       | Monthly price | Included storage | Included egress | Support          |\n|------------|---------------|------------------|-----------------|------------------|\n| Starter    | $0            | 5 GB             | 10 GB           | Community forum  |\n| Pro        | $49           | 500 GB \u2026",
+            "score": 0.66,
+            "updated_at": "2026-10-03T17:25:16.917171Z"
+          }
+        ],
+        "related_sources": [],
+        "grounding": {
+          "score": null,
+          "unsupported_sentences": 0,
+          "checked": false
+        },
+        "usage": {
+          "input_tokens": 1718,
+          "output_tokens": 35,
+          "cached_input_tokens": 0
+        },
+        "timings_ms": {
+          "guard_in": null,
+          "query_understanding": null,
+          "retrieval": 61.6,
+          "rerank": null,
+          "ttft": 3105.1,
+          "total": 3167.1
+        },
+        "cache": {
+          "hit": false,
+          "type": null
+        },
+        "model": "openrouter/qwen/qwen3.8-27b:free",
+        "prompt_version": "answer-v1",
+        "index_version": "corpus_v1",
+        "degraded": false
+      },
+      "latency_ms": 3173.9,
+      "judge": {
+        "correctness": 1.0,
+        "faithfulness": 0.5,
+        "reason": "The uptime claim is supported by S1, but the cited snippets do not show the Pro plan's email support response time."
+      }
+    },
+    {
+      "id": "g022",
+      "type": "no_answer",
+      "question": "Does Nimbus offer a GPU compute plan?",
+      "expected_answer": null,
+      "expected_sources": [],
+      "result": {
+        "request_id": "db164da3-2aab-4175-a600-e51dee5f3353",
+        "trace_id": "33bbceacaf6208278a89758baba89e74",
+        "answer_type": "answer",
+        "answer": "No. The listed Nimbus plans are Starter, Pro, Business, and Enterprise, and none is described as a GPU compute plan [S1][S2].",
+        "citations": [
+          {
+            "id": "S1",
+            "doc_id": "dc62d89c20b5d9ae48103d547c2225b5",
+            "chunk_id": "cc4a7db6-4648-57a7-84e7-04f278e63d3c",
+            "title": "Nimbus Pricing",
+            "url": "pricing.md",
+            "page": null,
+            "section_path": "Nimbus Pricing",
+            "snippet": "Nimbus is a managed object storage and compute service. This page lists the plans and how\nusage is billed. All prices are in US dollars and exclude tax.",
+            "score": 0.7099,
+            "updated_at": "2026-10-03T17:25:16.917171Z"
+          },
+          {
+            "id": "S2",
+            "doc_id": "dc62d89c20b5d9ae48103d547c2225b5",
+            "chunk_id": "7d1dad61-02f8-50c1-8ff1-f5b1f30646fb",
+            "title": "Nimbus Pricing",
+            "url": "pricing.md",
+            "page": null,
+            "section_path": "Nimbus Pricing > Plans",
+            "snippet": "| Plan       | Monthly price | Included storage | Included egress | Support          |\n|------------|---------------|------------------|-----------------|------------------|\n| Starter    | $0            | 5 GB             | 10 GB           | Community forum  |\n| Pro        | $49           | 500 GB \u2026",
+            "score": 0.6984,
+            "updated_at": "2026-10-03T17:25:16.917171Z"
+          }
+        ],
+        "related_sources": [],
+        "grounding": {
+          "score": null,
+          "unsupported_sentences": 0,
+          "checked": false
+        },
+        "usage": {
+          "input_tokens": 1627,
+          "output_tokens": 33,
+          "cached_input_tokens": 0
+        },
+        "timings_ms": {
+          "guard_in": null,
+          "query_understanding": null,
+          "retrieval": 70.8,
+          "rerank": null,
+          "ttft": 18472.2,
+          "total": 18543.9
+        },
+        "cache": {
+          "hit": false,
+          "type": null
+        },
+        "model": "openrouter/qwen/qwen3.8-27b:free",
+        "prompt_version": "answer-v1",
+        "index_version": "corpus_v1",
+        "degraded": false
+      },
+      "latency_ms": 18552.9
+    },
+    {
+      "id": "g023",
+      "type": "no_answer",
+      "question": "Who is the CEO of Nimbus?",
+      "expected_answer": null,
+      "expected_sources": [],
+      "result": {
+        "request_id": "4a8bcedf-84ac-446f-b4fe-6f80f65631ed",
+        "trace_id": "ef0115b90b60bf056340b062453905bc",
+        "answer_type": "insufficient_context",
+        "answer": "I couldn't find enough information in the available documents to answer that. The sources below may be related.",
+        "citations": [],
+        "related_sources": [
+          {
+            "id": "S1",
+            "doc_id": "dc62d89c20b5d9ae48103d547c2225b5",
+            "chunk_id": "cc4a7db6-4648-57a7-84e7-04f278e63d3c",
+            "title": "Nimbus Pricing",
+            "url": "pricing.md",
+            "page": null,
+            "section_path": "Nimbus Pricing",
+            "snippet": "Nimbus is a managed object storage and compute service. This page lists the plans and how\nusage is billed. All prices are in US dollars and exclude tax.",
+            "score": 0.6885,
+            "updated_at": "2026-10-03T17:25:16.917171Z"
+          },
+          {
+            "id": "S2",
+            "doc_id": "dc62d89c20b5d9ae48103d547c2225b5",
+            "chunk_id": "7d1dad61-02f8-50c1-8ff1-f5b1f30646fb",
+            "title": "Nimbus Pricing",
+            "url": "pricing.md",
+            "page": null,
+            "section_path": "Nimbus Pricing > Plans",
+            "snippet": "| Plan       | Monthly price | Included storage | Included egress | Support          |\n|------------|---------------|------------------|-----------------|------------------|\n| Starter    | $0            | 5 GB             | 10 GB           | Community forum  |\n| Pro        | $49           | 500 GB \u2026",
+            "score": 0.6562,
+            "updated_at": "2026-10-03T17:25:16.917171Z"
+          },
+          {
+            "id": "S3",
+            "doc_id": "0ac12dd68bca75851974acffe848f6c4",
+            "chunk_id": "c603dc80-1c8b-50c9-910d-595b62e3f7d3",
+            "title": "Security and Compliance",
+            "url": "security.md",
+            "page": null,
+            "section_path": "Security and Compliance > Certifications",
+            "snippet": "Nimbus holds SOC 2 Type II and ISO 27001 certifications. The SOC 2 report is renewed every\ntwelve months and can be requested under NDA from the trust portal. Nimbus is not HIPAA\ncertified, but Enterprise customers can sign a Business Associate Agreement (BAA).",
+            "score": 0.6351,
+            "updated_at": "2026-10-03T17:25:17.003216Z"
+          }
+        ],
+        "grounding": {
+          "score": null,
+          "unsupported_sentences": 0,
+          "checked": false
+        },
+        "usage": {
+          "input_tokens": 1614,
+          "output_tokens": 5,
+          "cached_input_tokens": 0
+        },
+        "timings_ms": {
+          "guard_in": null,
+          "query_understanding": null,
+          "retrieval": 52.3,
+          "rerank": null,
+          "ttft": 38852.8,
+          "total": 38905.8
+        },
+        "cache": {
+          "hit": false,
+          "type": null
+        },
+        "model": "openrouter/qwen/qwen3.8-27b:free",
+        "prompt_version": "answer-v1",
+        "index_version": "corpus_v1",
+        "degraded": false
+      },
+      "latency_ms": 38921.7
+    },
+    {
+      "id": "g024",
+      "type": "no_answer",
+      "question": "What is the weather in Paris today?",
+      "expected_answer": null,
+      "expected_sources": [],
+      "result": {
+        "request_id": "c7dcfcaf-4657-4371-a2c1-e27db06cfa3a",
+        "trace_id": "b95a0d1d1aa32c244c25c3999256f264",
+        "answer_type": "insufficient_context",
+        "answer": "I couldn't find enough information in the available documents to answer that. The sources below may be related.",
+        "citations": [],
+        "related_sources": [
+          {
+            "id": "S1",
+            "doc_id": "03affaa2c3be5b9c1b14d661aa42a8f8",
+            "chunk_id": "6a162679-5ad3-5373-b895-d5a46ab89521",
+            "title": "Service Level Agreement",
+            "url": "sla.md",
+            "page": null,
+            "section_path": "Service Level Agreement > Exclusions",
+            "snippet": "Scheduled maintenance announced at least 72 hours in advance does not count as downtime.\nMaintenance windows are limited to 4 hours per month and run between 02:00 and 06:00 UTC.",
+            "score": 0.4365,
+            "updated_at": "2026-10-03T17:25:16.948593Z"
+          },
+          {
+            "id": "S2",
+            "doc_id": "730933af8b73b36f155b49c56d059ade",
+            "chunk_id": "abdfc5e9-42a2-5cd5-bcd8-839d1916894c",
+            "title": "Nimbus Release Notes",
+            "url": "release-notes.html",
+            "page": null,
+            "section_path": "Nimbus Release Notes > Deprecations",
+            "snippet": "The v1 API will be shut down on 1 March 2027. Customers should migrate to the v2 API, which has been generally available since version 3.0.",
+            "score": 0.4262,
+            "updated_at": "2026-10-03T17:25:17.096811Z"
+          },
+          {
+            "id": "S3",
+            "doc_id": "03affaa2c3be5b9c1b14d661aa42a8f8",
+            "chunk_id": "2b1b37d3-8a8e-5b1b-8708-32126e0ba1e7",
+            "title": "Service Level Agreement",
+            "url": "sla.md",
+            "page": null,
+            "section_path": "Service Level Agreement > Availability commitment",
+            "snippet": "Nimbus commits to 99.9% monthly uptime for the Pro plan and 99.95% for the Business plan.\nEnterprise contracts include 99.99% monthly uptime. The Starter plan has no SLA.\n\nUptime is measured per region from Nimbus's external probes every 60 seconds.",
+            "score": 0.3928,
+            "updated_at": "2026-10-03T17:25:16.948593Z"
+          }
+        ],
+        "grounding": {
+          "score": null,
+          "unsupported_sentences": 0,
+          "checked": false
+        },
+        "usage": {
+          "input_tokens": 0,
+          "output_tokens": 0,
+          "cached_input_tokens": 0
+        },
+        "timings_ms": {
+          "guard_in": null,
+          "query_understanding": null,
+          "retrieval": 86.2,
+          "rerank": null,
+          "ttft": null,
+          "total": 86.7
+        },
+        "cache": {
+          "hit": false,
+          "type": null
+        },
+        "model": "openrouter/qwen/qwen3.8-27b:free",
+        "prompt_version": "answer-v1",
+        "index_version": "corpus_v1",
+        "degraded": false
+      },
+      "latency_ms": 103.9
+    },
+    {
+      "id": "g025",
+      "type": "acl",
+      "question": "How do I fail over the metadata database?",
+      "expected_answer": null,
+      "expected_sources": [],
+      "result": {
+        "request_id": "e31d8bfb-720f-4a6f-acd6-299e98b79073",
+        "trace_id": "fe77c6cea6304515d0fd94db1f089519",
+        "answer_type": "insufficient_context",
+        "answer": "I couldn't find enough information in the available documents to answer that. The sources below may be related.",
+        "citations": [],
+        "related_sources": [
+          {
+            "id": "S1",
+            "doc_id": "0ac12dd68bca75851974acffe848f6c4",
+            "chunk_id": "24fa79cb-4b6e-5efa-a0f3-47c2b110cd9d",
+            "title": "Security and Compliance",
+            "url": "security.md",
+            "page": null,
+            "section_path": "Security and Compliance > Data residency",
+            "snippet": "Customers choose a home region when creating a project. Available regions are us-east,\nus-west, eu-central and ap-southeast. Data never leaves the home region unless cross-region\nreplication is turned on explicitly.",
+            "score": 0.5387,
+            "updated_at": "2026-10-03T17:25:17.003216Z"
+          },
+          {
+            "id": "S2",
+            "doc_id": "730933af8b73b36f155b49c56d059ade",
+            "chunk_id": "abdfc5e9-42a2-5cd5-bcd8-839d1916894c",
+            "title": "Nimbus Release Notes",
+            "url": "release-notes.html",
+            "page": null,
+            "section_path": "Nimbus Release Notes > Deprecations",
+            "snippet": "The v1 API will be shut down on 1 March 2027. Customers should migrate to the v2 API, which has been generally available since version 3.0.",
+            "score": 0.5338,
+            "updated_at": "2026-10-03T17:25:17.096811Z"
+          },
+          {
+            "id": "S3",
+            "doc_id": "8846604e81f48ba825a49b74666d8cb0",
+            "chunk_id": "76490b61-88af-542d-aed7-b6812aceb556",
+            "title": "API Rate Limits",
+            "url": "api-limits.md",
+            "page": null,
+            "section_path": "API Rate Limits > Upload size",
+            "snippet": "A single upload request can carry at most 5 GB. Larger objects must use multipart upload,\nwhich supports objects up to 5 TB in parts of 5 MB to 5 GB.",
+            "score": 0.5231,
+            "updated_at": "2026-10-03T17:25:17.039796Z"
+          }
+        ],
+        "grounding": {
+          "score": null,
+          "unsupported_sentences": 0,
+          "checked": false
+        },
+        "usage": {
+          "input_tokens": 0,
+          "output_tokens": 0,
+          "cached_input_tokens": 0
+        },
+        "timings_ms": {
+          "guard_in": null,
+          "query_understanding": null,
+          "retrieval": 55.4,
+          "rerank": null,
+          "ttft": null,
+          "total": 55.6
+        },
+        "cache": {
+          "hit": false,
+          "type": null
+        },
+        "model": "openrouter/qwen/qwen3.8-27b:free",
+        "prompt_version": "answer-v1",
+        "index_version": "corpus_v1",
+        "degraded": false
+      },
+      "latency_ms": 59.4
+    }
+  ]
+}

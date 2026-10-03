@@ -1,0 +1,25 @@
+{"id": "g001", "type": "table", "question": "How much does the Pro plan cost per month?", "expected_answer": "$49 per month.", "expected_sources": ["pricing.md"]}
+{"id": "g002", "type": "table", "question": "How much storage is included in the Business plan?", "expected_answer": "5 TB.", "expected_sources": ["pricing.md"]}
+{"id": "g003", "type": "factual", "question": "What discount do I get for paying annually?", "expected_answer": "15% on the Pro and Business plans.", "expected_sources": ["pricing.md"]}
+{"id": "g004", "type": "factual", "question": "What is the price of storage overage per GB?", "expected_answer": "$0.018 per GB-month.", "expected_sources": ["pricing.md"]}
+{"id": "g005", "type": "factual", "question": "Do I need a credit card to start the free trial?", "expected_answer": "No. The 30-day Business trial needs no credit card.", "expected_sources": ["pricing.md"]}
+{"id": "g006", "type": "factual", "question": "Can I get a refund on a monthly plan?", "expected_answer": "No; monthly plans are not refundable but can be cancelled any time and stay active until the end of the billing period.", "expected_sources": ["pricing.md"]}
+{"id": "g007", "type": "factual", "question": "What uptime does the Business plan guarantee?", "expected_answer": "99.95% monthly uptime.", "expected_sources": ["sla.md"]}
+{"id": "g008", "type": "table", "question": "What service credit do I get if monthly uptime falls below 95%?", "expected_answer": "50% of the monthly fee.", "expected_sources": ["sla.md"]}
+{"id": "g009", "type": "factual", "question": "How long do I have to request an SLA credit?", "expected_answer": "Within 30 days of the end of the affected month, through the support portal.", "expected_sources": ["sla.md"]}
+{"id": "g010", "type": "factual", "question": "Does scheduled maintenance count as downtime?", "expected_answer": "No, if announced at least 72 hours in advance; windows are at most 4 hours per month between 02:00 and 06:00 UTC.", "expected_sources": ["sla.md"]}
+{"id": "g011", "type": "factual", "question": "What encryption is used for data at rest?", "expected_answer": "AES-256.", "expected_sources": ["security.md"]}
+{"id": "g012", "type": "factual", "question": "Is Nimbus HIPAA certified?", "expected_answer": "No, but Enterprise customers can sign a BAA.", "expected_sources": ["security.md"]}
+{"id": "g013", "type": "factual", "question": "Which regions can I store data in?", "expected_answer": "us-east, us-west, eu-central and ap-southeast.", "expected_sources": ["security.md"]}
+{"id": "g014", "type": "factual", "question": "How long are audit logs kept on the Enterprise plan?", "expected_answer": "400 days.", "expected_sources": ["security.md"]}
+{"id": "g015", "type": "factual", "question": "What is the API rate limit on the Pro plan?", "expected_answer": "100 requests per second, burst up to 200.", "expected_sources": ["api-limits.md"]}
+{"id": "g016", "type": "factual", "question": "What happens when I exceed the API rate limit?", "expected_answer": "HTTP 429 with a Retry-After header; back off exponentially from that value.", "expected_sources": ["api-limits.md"]}
+{"id": "g017", "type": "factual", "question": "What is the largest object I can upload with multipart upload?", "expected_answer": "5 TB.", "expected_sources": ["api-limits.md"]}
+{"id": "g018", "type": "factual", "question": "How much does archive storage cost?", "expected_answer": "$0.004 per GB-month.", "expected_sources": ["release-notes.html"]}
+{"id": "g019", "type": "factual", "question": "When will the v1 API be shut down?", "expected_answer": "1 March 2027.", "expected_sources": ["release-notes.html"]}
+{"id": "g020", "type": "multi_hop", "question": "Which plans offer both SSO and bring-your-own-key encryption?", "expected_answer": "Business and Enterprise.", "expected_sources": ["security.md"]}
+{"id": "g021", "type": "multi_hop", "question": "If I am on the Pro plan, what uptime is guaranteed and how fast will support reply by email?", "expected_answer": "99.9% monthly uptime; email support within 1 business day.", "expected_sources": ["sla.md", "pricing.md"]}
+{"id": "g022", "type": "no_answer", "question": "Does Nimbus offer a GPU compute plan?", "expected_answer": null, "expected_sources": []}
+{"id": "g023", "type": "no_answer", "question": "Who is the CEO of Nimbus?", "expected_answer": null, "expected_sources": []}
+{"id": "g024", "type": "no_answer", "question": "What is the weather in Paris today?", "expected_answer": null, "expected_sources": []}
+{"id": "g025", "type": "acl", "question": "How do I fail over the metadata database?", "expected_answer": null, "expected_sources": []}
