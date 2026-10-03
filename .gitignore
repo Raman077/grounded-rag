@@ -19,8 +19,6 @@ build/
 # Data
 data/
 *.parquet
-eval/datasets/*.jsonl
-!eval/datasets/.gitkeep
 
 # Editors / OS
 .vscode/

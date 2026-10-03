@@ -14,21 +14,31 @@ dev = [
   "mypy>=1.11",
   "pytest>=8",
   "pytest-asyncio>=0.24",
+  "types-pyyaml",
 ]
 
 [tool.ruff]
-line-length = 100
+line-length = 120
 target-version = "py312"
 
 [tool.ruff.lint]
 select = ["E", "F", "I", "B", "UP", "ASYNC", "S"]
 ignore = ["S101"]
 
+[tool.ruff.lint.per-file-ignores]
+# Test helpers may do blocking file IO inside async code and use literal test secrets.
+"conftest.py" = ["ASYNC240"]
+"**/tests/**" = ["ASYNC240", "S105", "S106"]
+
 [tool.mypy]
 python_version = "3.12"
+plugins = ["pydantic.mypy"]
 strict = true
 ignore_missing_imports = true
 
 [tool.pytest.ini_options]
 asyncio_mode = "auto"
+asyncio_default_fixture_loop_scope = "function"
 testpaths = ["services", "libs"]
+addopts = "--import-mode=importlib -m 'not opencode'"
+markers = ["opencode: needs a running `opencode serve` (see README)"]
