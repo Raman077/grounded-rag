@@ -1,0 +1,23 @@
+name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  lint-type-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v3
+      - name: Set up Python
+        run: uv python install 3.12
+      - name: Install dev tools
+        run: uv sync --only-group dev
+      - name: Lint
+        run: uv run ruff check .
+      - name: Type-check
+        run: uv run mypy services libs
+      - name: Test
+        run: uv run pytest || [ $? -eq 5 ]  # exit 5 = no tests collected yet
