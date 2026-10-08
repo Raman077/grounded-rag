@@ -3,6 +3,11 @@
 Queries always go through the alias (``corpus_live``) so an index rebuild can be promoted
 atomically. Every search is filtered on ``tenant_id`` and ``acl_groups`` inside Qdrant;
 results are never filtered after retrieval.
+
+Each point carries two named vectors: ``dense`` (semantic) and ``sparse`` (lexical,
+BM25). The sparse config sets ``Modifier.IDF`` so Qdrant computes the inverse document
+frequency from the live collection -- the fastembed side only emits term frequencies,
+and IDF computed over a stale snapshot would drift as documents change.
 """
 
 from __future__ import annotations
@@ -16,8 +21,12 @@ from qdrant_client import AsyncQdrantClient, models
 
 from rag_core.config import Settings
 from rag_core.schemas import ChunkPayload, QueryFilters
+from rag_core.sparse import SparseVector
 
 _KEYWORD_FIELDS = ("acl_groups", "doc_id", "doc_type", "source")
+
+DENSE = "dense"
+SPARSE = "sparse"
 
 
 @dataclass(frozen=True)
@@ -25,6 +34,12 @@ class ScoredChunk:
     id: str
     score: float
     payload: ChunkPayload
+    #: A 0-1 relevance figure that a gate can threshold on. Cosine similarity carries
+    #: straight over; a fused (RRF) score has no such scale, so it is ``None`` until a
+    #: reranker supplies one. See ``rag_core.gate``.
+    normalized_score: float | None = None
+    #: The score from the retrieval stage, kept when a reranker overwrites ``score``.
+    retrieval_score: float | None = None
 
 
 @dataclass(frozen=True)
@@ -32,6 +47,7 @@ class ChunkPoint:
     id: str
     vector: list[float]
     payload: ChunkPayload
+    sparse: SparseVector | None = None
 
 
 def build_client(settings: Settings) -> AsyncQdrantClient:
@@ -65,7 +81,8 @@ class VectorStore:
         if not await self.client.collection_exists(self.collection):
             await self.client.create_collection(
                 self.collection,
-                vectors_config=models.VectorParams(size=self.dim, distance=models.Distance.COSINE),
+                vectors_config={DENSE: models.VectorParams(size=self.dim, distance=models.Distance.COSINE)},
+                sparse_vectors_config={SPARSE: models.SparseVectorParams(modifier=models.Modifier.IDF)},
                 hnsw_config=models.HnswConfigDiff(m=16, ef_construct=200),
             )
             with warnings.catch_warnings():
@@ -126,7 +143,7 @@ class VectorStore:
             await self.client.upsert(
                 self.alias,
                 points=[
-                    models.PointStruct(id=p.id, vector=p.vector, payload=p.payload.model_dump(mode="json"))
+                    models.PointStruct(id=p.id, vector=_vectors(p), payload=p.payload.model_dump(mode="json"))
                     for p in points
                 ],
                 wait=True,
@@ -142,6 +159,15 @@ class VectorStore:
 
     # -------------------------------------------------------------- reads
 
+    def _access_filter(self, tenant_id: str, acl_groups: Sequence[str], filters: QueryFilters | None) -> models.Filter:
+        must: list[models.Condition] = [
+            _match("tenant_id", tenant_id),
+            models.FieldCondition(key="acl_groups", match=models.MatchAny(any=list(acl_groups))),
+        ]
+        if filters is not None:
+            must.extend(_filter_conditions(filters))
+        return models.Filter(must=must)
+
     async def search(
         self,
         vector: list[float],
@@ -151,25 +177,76 @@ class VectorStore:
         limit: int,
         filters: QueryFilters | None = None,
     ) -> list[ScoredChunk]:
+        """Dense-only search. Cosine similarity carries a usable 0-1 scale, so the
+        result's ``normalized_score`` is the score itself."""
         if not acl_groups:
             return []
-        must: list[models.Condition] = [
-            _match("tenant_id", tenant_id),
-            models.FieldCondition(key="acl_groups", match=models.MatchAny(any=list(acl_groups))),
-        ]
-        if filters is not None:
-            must.extend(_filter_conditions(filters))
         result = await self.client.query_points(
             self.alias,
             query=vector,
-            query_filter=models.Filter(must=must),
+            using=DENSE,
+            query_filter=self._access_filter(tenant_id, acl_groups, filters),
             limit=limit,
             with_payload=True,
         )
-        return [
-            ScoredChunk(id=str(p.id), score=p.score, payload=ChunkPayload.model_validate(p.payload))
-            for p in result.points
-        ]
+        return [_chunk(p, normalized=p.score) for p in result.points]
+
+    async def search_hybrid(
+        self,
+        vector: list[float],
+        sparse: SparseVector,
+        *,
+        tenant_id: str,
+        acl_groups: Sequence[str],
+        limit: int,
+        prefetch_limit: int,
+        filters: QueryFilters | None = None,
+    ) -> list[ScoredChunk]:
+        """Dense and sparse candidates fused by Reciprocal Rank Fusion, server-side.
+
+        RRF scores rank positions, not similarity, so the result carries no
+        ``normalized_score``: there is no threshold that means the same thing across
+        queries. Gating a hybrid result needs a reranker (or a rank-based gate).
+        """
+        if not acl_groups:
+            return []
+        query_filter = self._access_filter(tenant_id, acl_groups, filters)
+        prefetch = [models.Prefetch(query=vector, using=DENSE, limit=prefetch_limit, filter=query_filter)]
+        if sparse:
+            prefetch.append(
+                models.Prefetch(
+                    query=models.SparseVector(indices=sparse.indices, values=sparse.values),
+                    using=SPARSE,
+                    limit=prefetch_limit,
+                    filter=query_filter,
+                )
+            )
+        result = await self.client.query_points(
+            self.alias,
+            prefetch=prefetch,
+            query=models.FusionQuery(fusion=models.Fusion.RRF),
+            query_filter=query_filter,
+            limit=limit,
+            with_payload=True,
+        )
+        return [_chunk(p, normalized=None) for p in result.points]
+
+
+def _vectors(point: ChunkPoint) -> dict[str, Any]:
+    vectors: dict[str, Any] = {DENSE: point.vector}
+    if point.sparse:
+        vectors[SPARSE] = models.SparseVector(indices=point.sparse.indices, values=point.sparse.values)
+    return vectors
+
+
+def _chunk(point: Any, *, normalized: float | None) -> ScoredChunk:
+    return ScoredChunk(
+        id=str(point.id),
+        score=point.score,
+        payload=ChunkPayload.model_validate(point.payload),
+        normalized_score=normalized,
+        retrieval_score=point.score,
+    )
 
 
 def _match(key: str, value: Any) -> models.FieldCondition:

@@ -14,6 +14,7 @@ from typing import Literal
 
 from rag_core.embeddings import Embedder
 from rag_core.schemas import ChunkPayload
+from rag_core.sparse import SparseEmbedder, SparseVector
 from rag_core.telemetry import get_tracer, timed_span
 from rag_core.vectorstore import ChunkPoint, VectorStore
 
@@ -57,7 +58,13 @@ def embedding_text(title: str, chunk: Chunk) -> str:
 
 
 async def ingest_file(
-    path: Path, *, root: Path, options: IngestOptions, store: VectorStore, embedder: Embedder
+    path: Path,
+    *,
+    root: Path,
+    options: IngestOptions,
+    store: VectorStore,
+    embedder: Embedder,
+    sparse_embedder: SparseEmbedder | None = None,
 ) -> IngestResult:
     rel_path = path.relative_to(root).as_posix()
     doc_id = make_doc_id(options.tenant_id, options.source, rel_path)
@@ -77,7 +84,15 @@ async def ingest_file(
             return IngestResult(rel_path, doc_id, "skipped", reason=str(exc))
 
         chunks = chunk_document(doc, max_tokens=options.max_tokens, overlap_tokens=options.overlap_tokens)
-        vectors = await embedder.embed_documents([embedding_text(doc.title, c) for c in chunks])
+        texts = [embedding_text(doc.title, c) for c in chunks]
+        vectors = await embedder.embed_documents(texts)
+        # The sparse side embeds the same header-prefixed text, so a heading term is
+        # lexically searchable even when the chunk body never repeats it.
+        sparse_vectors: list[SparseVector | None]
+        if sparse_embedder is not None:
+            sparse_vectors = list(await sparse_embedder.embed_documents(texts))
+        else:
+            sparse_vectors = [None] * len(chunks)
         stat = await asyncio.to_thread(path.stat)
         updated_at = datetime.fromtimestamp(stat.st_mtime, tz=UTC)
 
@@ -85,6 +100,7 @@ async def ingest_file(
             ChunkPoint(
                 id=str(uuid.uuid5(_CHUNK_NAMESPACE, f"{doc_id}:{chunk.index}:{chunk.text}")),
                 vector=vector,
+                sparse=sparse_vector,
                 payload=ChunkPayload(
                     tenant_id=options.tenant_id,
                     acl_groups=list(options.acl_groups),
@@ -101,7 +117,7 @@ async def ingest_file(
                     updated_at=updated_at,
                 ),
             )
-            for chunk, vector in zip(chunks, vectors, strict=True)
+            for chunk, vector, sparse_vector in zip(chunks, vectors, sparse_vectors, strict=True)
         ]
         await store.replace_document(options.tenant_id, doc_id, points)
         span.set_attribute("status", "indexed")

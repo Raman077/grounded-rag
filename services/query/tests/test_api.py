@@ -65,7 +65,7 @@ def test_json_answer_with_citations(client: TestClient, auth: dict[str, str], ll
     assert [c["id"] for c in body["citations"]] == ["S1"]
     assert body["citations"][0]["url"] == "pricing.md"
     assert body["prompt_version"] == "answer-v1"
-    assert body["index_version"] == "corpus_v1"
+    assert body["index_version"] == "corpus_v2"
     assert len(body["trace_id"]) == 32
     assert body["usage"]["input_tokens"] == 100
     assert body["timings_ms"]["retrieval"] is not None
