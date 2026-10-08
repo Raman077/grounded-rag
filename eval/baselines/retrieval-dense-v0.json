@@ -1,0 +1,699 @@
+{
+  "generated_at": "2026-10-08T10:52:20.563936+00:00",
+  "retriever": "dense",
+  "golden": "eval\\golden\\golden_v0.jsonl",
+  "embedding_model": "BAAI/bge-small-en-v1.5",
+  "items": 25,
+  "chunks_indexed": 23,
+  "overall": {
+    "recall_at_k": 1.0,
+    "hit_at_k": 1.0,
+    "mrr": 1.0,
+    "ndcg_at_k": 0.92,
+    "noise_at_k": 0.5833,
+    "correct_rejection_rate": 0.5,
+    "latency_p50_ms": 33.9,
+    "latency_mean_ms": 34.2,
+    "k": 8
+  },
+  "by_type": {
+    "factual": {
+      "n": 16,
+      "recall_at_k": 1.0,
+      "mrr": 1.0
+    },
+    "multi_hop": {
+      "n": 2,
+      "recall_at_k": 1.0,
+      "mrr": 1.0
+    },
+    "table": {
+      "n": 3,
+      "recall_at_k": 1.0,
+      "mrr": 1.0
+    }
+  },
+  "rows": [
+    {
+      "id": "g001",
+      "type": "table",
+      "question": "How much does the Pro plan cost per month?",
+      "retrieved": [
+        "pricing.md",
+        "sla.md",
+        "pricing.md",
+        "pricing.md",
+        "pricing.md",
+        "sla.md",
+        "api-limits.md",
+        "release-notes.html"
+      ],
+      "top_score": 0.7106,
+      "above_gate": true,
+      "latency_ms": 34.8,
+      "expected": [
+        "pricing.md"
+      ],
+      "scores": {
+        "recall_at_k": 1.0,
+        "hit_at_k": 1.0,
+        "mrr": 1.0,
+        "ndcg_at_k": 0.9047,
+        "noise_at_k": 0.5
+      }
+    },
+    {
+      "id": "g002",
+      "type": "table",
+      "question": "How much storage is included in the Business plan?",
+      "retrieved": [
+        "pricing.md",
+        "pricing.md",
+        "api-limits.md",
+        "api-limits.md",
+        "sla.md",
+        "pricing.md",
+        "release-notes.html",
+        "security.md"
+      ],
+      "top_score": 0.6863,
+      "above_gate": true,
+      "latency_ms": 30.6,
+      "expected": [
+        "pricing.md"
+      ],
+      "scores": {
+        "recall_at_k": 1.0,
+        "hit_at_k": 1.0,
+        "mrr": 1.0,
+        "ndcg_at_k": 0.9325,
+        "noise_at_k": 0.625
+      }
+    },
+    {
+      "id": "g003",
+      "type": "factual",
+      "question": "What discount do I get for paying annually?",
+      "retrieved": [
+        "pricing.md",
+        "pricing.md",
+        "pricing.md",
+        "sla.md",
+        "pricing.md",
+        "sla.md",
+        "api-limits.md",
+        "security.md"
+      ],
+      "top_score": 0.6307,
+      "above_gate": true,
+      "latency_ms": 25.3,
+      "expected": [
+        "pricing.md"
+      ],
+      "scores": {
+        "recall_at_k": 1.0,
+        "hit_at_k": 1.0,
+        "mrr": 1.0,
+        "ndcg_at_k": 0.9829,
+        "noise_at_k": 0.5
+      }
+    },
+    {
+      "id": "g004",
+      "type": "factual",
+      "question": "What is the price of storage overage per GB?",
+      "retrieved": [
+        "pricing.md",
+        "release-notes.html",
+        "pricing.md",
+        "api-limits.md",
+        "pricing.md",
+        "api-limits.md",
+        "release-notes.html",
+        "sla.md"
+      ],
+      "top_score": 0.8461,
+      "above_gate": true,
+      "latency_ms": 37.0,
+      "expected": [
+        "pricing.md"
+      ],
+      "scores": {
+        "recall_at_k": 1.0,
+        "hit_at_k": 1.0,
+        "mrr": 1.0,
+        "ndcg_at_k": 0.8855,
+        "noise_at_k": 0.625
+      }
+    },
+    {
+      "id": "g005",
+      "type": "factual",
+      "question": "Do I need a credit card to start the free trial?",
+      "retrieved": [
+        "pricing.md",
+        "sla.md",
+        "pricing.md",
+        "pricing.md",
+        "sla.md",
+        "pricing.md",
+        "security.md",
+        "release-notes.html"
+      ],
+      "top_score": 0.8211,
+      "above_gate": true,
+      "latency_ms": 42.4,
+      "expected": [
+        "pricing.md"
+      ],
+      "scores": {
+        "recall_at_k": 1.0,
+        "hit_at_k": 1.0,
+        "mrr": 1.0,
+        "ndcg_at_k": 0.8928,
+        "noise_at_k": 0.5
+      }
+    },
+    {
+      "id": "g006",
+      "type": "factual",
+      "question": "Can I get a refund on a monthly plan?",
+      "retrieved": [
+        "pricing.md",
+        "sla.md",
+        "pricing.md",
+        "pricing.md",
+        "sla.md",
+        "sla.md",
+        "api-limits.md",
+        "pricing.md"
+      ],
+      "top_score": 0.7561,
+      "above_gate": true,
+      "latency_ms": 37.0,
+      "expected": [
+        "pricing.md"
+      ],
+      "scores": {
+        "recall_at_k": 1.0,
+        "hit_at_k": 1.0,
+        "mrr": 1.0,
+        "ndcg_at_k": 0.8768,
+        "noise_at_k": 0.5
+      }
+    },
+    {
+      "id": "g007",
+      "type": "factual",
+      "question": "What uptime does the Business plan guarantee?",
+      "retrieved": [
+        "sla.md",
+        "sla.md",
+        "sla.md",
+        "api-limits.md",
+        "pricing.md",
+        "pricing.md",
+        "security.md",
+        "pricing.md"
+      ],
+      "top_score": 0.7665,
+      "above_gate": true,
+      "latency_ms": 20.6,
+      "expected": [
+        "sla.md"
+      ],
+      "scores": {
+        "recall_at_k": 1.0,
+        "hit_at_k": 1.0,
+        "mrr": 1.0,
+        "ndcg_at_k": 1.0,
+        "noise_at_k": 0.625
+      }
+    },
+    {
+      "id": "g008",
+      "type": "table",
+      "question": "What service credit do I get if monthly uptime falls below 95%?",
+      "retrieved": [
+        "sla.md",
+        "sla.md",
+        "sla.md",
+        "sla.md",
+        "pricing.md",
+        "api-limits.md",
+        "pricing.md",
+        "pricing.md"
+      ],
+      "top_score": 0.7986,
+      "above_gate": true,
+      "latency_ms": 49.1,
+      "expected": [
+        "sla.md"
+      ],
+      "scores": {
+        "recall_at_k": 1.0,
+        "hit_at_k": 1.0,
+        "mrr": 1.0,
+        "ndcg_at_k": 1.0,
+        "noise_at_k": 0.5
+      }
+    },
+    {
+      "id": "g009",
+      "type": "factual",
+      "question": "How long do I have to request an SLA credit?",
+      "retrieved": [
+        "sla.md",
+        "security.md",
+        "sla.md",
+        "pricing.md",
+        "pricing.md",
+        "security.md",
+        "sla.md",
+        "api-limits.md"
+      ],
+      "top_score": 0.6725,
+      "above_gate": true,
+      "latency_ms": 27.0,
+      "expected": [
+        "sla.md"
+      ],
+      "scores": {
+        "recall_at_k": 1.0,
+        "hit_at_k": 1.0,
+        "mrr": 1.0,
+        "ndcg_at_k": 0.8603,
+        "noise_at_k": 0.625
+      }
+    },
+    {
+      "id": "g010",
+      "type": "factual",
+      "question": "Does scheduled maintenance count as downtime?",
+      "retrieved": [
+        "sla.md",
+        "sla.md",
+        "release-notes.html",
+        "sla.md",
+        "sla.md",
+        "security.md",
+        "api-limits.md",
+        "api-limits.md"
+      ],
+      "top_score": 0.8441,
+      "above_gate": true,
+      "latency_ms": 24.6,
+      "expected": [
+        "sla.md"
+      ],
+      "scores": {
+        "recall_at_k": 1.0,
+        "hit_at_k": 1.0,
+        "mrr": 1.0,
+        "ndcg_at_k": 0.9558,
+        "noise_at_k": 0.5
+      }
+    },
+    {
+      "id": "g011",
+      "type": "factual",
+      "question": "What encryption is used for data at rest?",
+      "retrieved": [
+        "security.md",
+        "api-limits.md",
+        "security.md",
+        "api-limits.md",
+        "security.md",
+        "sla.md",
+        "release-notes.html",
+        "release-notes.html"
+      ],
+      "top_score": 0.7788,
+      "above_gate": true,
+      "latency_ms": 34.6,
+      "expected": [
+        "security.md"
+      ],
+      "scores": {
+        "recall_at_k": 1.0,
+        "hit_at_k": 1.0,
+        "mrr": 1.0,
+        "ndcg_at_k": 0.8855,
+        "noise_at_k": 0.625
+      }
+    },
+    {
+      "id": "g012",
+      "type": "factual",
+      "question": "Is Nimbus HIPAA certified?",
+      "retrieved": [
+        "security.md",
+        "sla.md",
+        "sla.md",
+        "pricing.md",
+        "pricing.md",
+        "release-notes.html",
+        "release-notes.html",
+        "pricing.md"
+      ],
+      "top_score": 0.8505,
+      "above_gate": true,
+      "latency_ms": 22.3,
+      "expected": [
+        "security.md"
+      ],
+      "scores": {
+        "recall_at_k": 1.0,
+        "hit_at_k": 1.0,
+        "mrr": 1.0,
+        "ndcg_at_k": 1.0,
+        "noise_at_k": 0.875
+      }
+    },
+    {
+      "id": "g013",
+      "type": "factual",
+      "question": "Which regions can I store data in?",
+      "retrieved": [
+        "security.md",
+        "release-notes.html",
+        "api-limits.md",
+        "security.md",
+        "pricing.md",
+        "release-notes.html",
+        "security.md",
+        "pricing.md"
+      ],
+      "top_score": 0.7688,
+      "above_gate": true,
+      "latency_ms": 30.5,
+      "expected": [
+        "security.md"
+      ],
+      "scores": {
+        "recall_at_k": 1.0,
+        "hit_at_k": 1.0,
+        "mrr": 1.0,
+        "ndcg_at_k": 0.8278,
+        "noise_at_k": 0.625
+      }
+    },
+    {
+      "id": "g014",
+      "type": "factual",
+      "question": "How long are audit logs kept on the Enterprise plan?",
+      "retrieved": [
+        "security.md",
+        "sla.md",
+        "sla.md",
+        "pricing.md",
+        "security.md",
+        "release-notes.html",
+        "pricing.md",
+        "release-notes.html"
+      ],
+      "top_score": 0.7509,
+      "above_gate": true,
+      "latency_ms": 22.7,
+      "expected": [
+        "security.md"
+      ],
+      "scores": {
+        "recall_at_k": 1.0,
+        "hit_at_k": 1.0,
+        "mrr": 1.0,
+        "ndcg_at_k": 0.8503,
+        "noise_at_k": 0.75
+      }
+    },
+    {
+      "id": "g015",
+      "type": "factual",
+      "question": "What is the API rate limit on the Pro plan?",
+      "retrieved": [
+        "api-limits.md",
+        "api-limits.md",
+        "api-limits.md",
+        "sla.md",
+        "api-limits.md",
+        "pricing.md",
+        "pricing.md",
+        "sla.md"
+      ],
+      "top_score": 0.8305,
+      "above_gate": true,
+      "latency_ms": 33.6,
+      "expected": [
+        "api-limits.md"
+      ],
+      "scores": {
+        "recall_at_k": 1.0,
+        "hit_at_k": 1.0,
+        "mrr": 1.0,
+        "ndcg_at_k": 0.9829,
+        "noise_at_k": 0.5
+      }
+    },
+    {
+      "id": "g016",
+      "type": "factual",
+      "question": "What happens when I exceed the API rate limit?",
+      "retrieved": [
+        "api-limits.md",
+        "api-limits.md",
+        "api-limits.md",
+        "api-limits.md",
+        "sla.md",
+        "pricing.md",
+        "release-notes.html",
+        "sla.md"
+      ],
+      "top_score": 0.8331,
+      "above_gate": true,
+      "latency_ms": 21.5,
+      "expected": [
+        "api-limits.md"
+      ],
+      "scores": {
+        "recall_at_k": 1.0,
+        "hit_at_k": 1.0,
+        "mrr": 1.0,
+        "ndcg_at_k": 1.0,
+        "noise_at_k": 0.5
+      }
+    },
+    {
+      "id": "g017",
+      "type": "factual",
+      "question": "What is the largest object I can upload with multipart upload?",
+      "retrieved": [
+        "api-limits.md",
+        "release-notes.html",
+        "release-notes.html",
+        "pricing.md",
+        "api-limits.md",
+        "api-limits.md",
+        "api-limits.md",
+        "pricing.md"
+      ],
+      "top_score": 0.8252,
+      "above_gate": true,
+      "latency_ms": 50.4,
+      "expected": [
+        "api-limits.md"
+      ],
+      "scores": {
+        "recall_at_k": 1.0,
+        "hit_at_k": 1.0,
+        "mrr": 1.0,
+        "ndcg_at_k": 0.8106,
+        "noise_at_k": 0.5
+      }
+    },
+    {
+      "id": "g018",
+      "type": "factual",
+      "question": "How much does archive storage cost?",
+      "retrieved": [
+        "release-notes.html",
+        "pricing.md",
+        "pricing.md",
+        "api-limits.md",
+        "pricing.md",
+        "release-notes.html",
+        "pricing.md",
+        "api-limits.md"
+      ],
+      "top_score": 0.7915,
+      "above_gate": true,
+      "latency_ms": 40.1,
+      "expected": [
+        "release-notes.html"
+      ],
+      "scores": {
+        "recall_at_k": 1.0,
+        "hit_at_k": 1.0,
+        "mrr": 1.0,
+        "ndcg_at_k": 0.8316,
+        "noise_at_k": 0.75
+      }
+    },
+    {
+      "id": "g019",
+      "type": "factual",
+      "question": "When will the v1 API be shut down?",
+      "retrieved": [
+        "release-notes.html",
+        "sla.md",
+        "api-limits.md",
+        "api-limits.md",
+        "api-limits.md",
+        "sla.md",
+        "security.md",
+        "security.md"
+      ],
+      "top_score": 0.8607,
+      "above_gate": true,
+      "latency_ms": 33.9,
+      "expected": [
+        "release-notes.html"
+      ],
+      "scores": {
+        "recall_at_k": 1.0,
+        "hit_at_k": 1.0,
+        "mrr": 1.0,
+        "ndcg_at_k": 1.0,
+        "noise_at_k": 0.875
+      }
+    },
+    {
+      "id": "g020",
+      "type": "multi_hop",
+      "question": "Which plans offer both SSO and bring-your-own-key encryption?",
+      "retrieved": [
+        "security.md",
+        "security.md",
+        "sla.md",
+        "security.md",
+        "api-limits.md",
+        "pricing.md",
+        "security.md",
+        "sla.md"
+      ],
+      "top_score": 0.698,
+      "above_gate": true,
+      "latency_ms": 53.8,
+      "expected": [
+        "security.md"
+      ],
+      "scores": {
+        "recall_at_k": 1.0,
+        "hit_at_k": 1.0,
+        "mrr": 1.0,
+        "ndcg_at_k": 0.9349,
+        "noise_at_k": 0.5
+      }
+    },
+    {
+      "id": "g021",
+      "type": "multi_hop",
+      "question": "If I am on the Pro plan, what uptime is guaranteed and how fast will support reply by email?",
+      "retrieved": [
+        "sla.md",
+        "api-limits.md",
+        "pricing.md",
+        "pricing.md",
+        "sla.md",
+        "pricing.md",
+        "api-limits.md",
+        "sla.md"
+      ],
+      "top_score": 0.7426,
+      "above_gate": true,
+      "latency_ms": 51.3,
+      "expected": [
+        "sla.md",
+        "pricing.md"
+      ],
+      "scores": {
+        "recall_at_k": 1.0,
+        "hit_at_k": 1.0,
+        "mrr": 1.0,
+        "ndcg_at_k": 0.9045,
+        "noise_at_k": 0.25
+      }
+    },
+    {
+      "id": "g022",
+      "type": "no_answer",
+      "question": "Does Nimbus offer a GPU compute plan?",
+      "retrieved": [
+        "pricing.md",
+        "pricing.md",
+        "sla.md",
+        "pricing.md",
+        "pricing.md",
+        "release-notes.html",
+        "release-notes.html",
+        "release-notes.html"
+      ],
+      "top_score": 0.7099,
+      "above_gate": true,
+      "latency_ms": 41.9
+    },
+    {
+      "id": "g023",
+      "type": "no_answer",
+      "question": "Who is the CEO of Nimbus?",
+      "retrieved": [
+        "pricing.md",
+        "pricing.md",
+        "security.md",
+        "release-notes.html",
+        "sla.md",
+        "release-notes.html",
+        "pricing.md",
+        "pricing.md"
+      ],
+      "top_score": 0.6885,
+      "above_gate": true,
+      "latency_ms": 21.8
+    },
+    {
+      "id": "g024",
+      "type": "no_answer",
+      "question": "What is the weather in Paris today?",
+      "retrieved": [
+        "sla.md",
+        "release-notes.html",
+        "sla.md",
+        "security.md",
+        "release-notes.html",
+        "api-limits.md",
+        "pricing.md",
+        "security.md"
+      ],
+      "top_score": 0.4365,
+      "above_gate": false,
+      "latency_ms": 33.2
+    },
+    {
+      "id": "g025",
+      "type": "acl",
+      "question": "How do I fail over the metadata database?",
+      "retrieved": [
+        "security.md",
+        "release-notes.html",
+        "api-limits.md",
+        "sla.md",
+        "api-limits.md",
+        "security.md",
+        "api-limits.md",
+        "security.md"
+      ],
+      "top_score": 0.5387,
+      "above_gate": false,
+      "latency_ms": 35.2
+    }
+  ]
+}
